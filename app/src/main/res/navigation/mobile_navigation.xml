@@ -3,23 +3,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/HomeFrag">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/HomeFrag"
         android:name="mx.itesm.bcr.plantifybcr.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/wikiFrag"
         android:name="mx.itesm.bcr.plantifybcr.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/ajustesFrag"
         android:name="mx.itesm.bcr.plantifybcr.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/plantaEspFrag"
+        android:name="mx.itesm.bcr.plantifybcr.PlantaEspFrag"
+        android:label="planta_esp_fragment"
+        tools:layout="@layout/planta_esp_fragment" />
+    <fragment
+        android:id="@+id/infoUsuarioFrag"
+        android:name="mx.itesm.bcr.plantifybcr.InfoUsuarioFrag"
+        android:label="info_usuario_fragment"
+        tools:layout="@layout/info_usuario_fragment" />
+    <fragment
+        android:id="@+id/sensoresFrag"
+        android:name="mx.itesm.bcr.plantifybcr.SensoresFrag"
+        android:label="sensores_fragment"
+        tools:layout="@layout/sensores_fragment" />
+    <fragment
+        android:id="@+id/grupoEspPlantasFrag"
+        android:name="mx.itesm.bcr.plantifybcr.GrupoEspPlantasFrag"
+        android:label="grupo_esp_plantas_fragment"
+        tools:layout="@layout/grupo_esp_plantas_fragment" />
+    <fragment
+        android:id="@+id/gruposPlantasFrag"
+        android:name="mx.itesm.bcr.plantifybcr.GruposPlantasFrag"
+        android:label="grupos_plantas_fragment"
+        tools:layout="@layout/grupos_plantas_fragment" />
+    <fragment
+        android:id="@+id/tutorialesFrag"
+        android:name="mx.itesm.bcr.plantifybcr.TutorialesFrag"
+        android:label="tutoriales_fragment"
+        tools:layout="@layout/tutoriales_fragment" />
+    <fragment
+        android:id="@+id/acercaDeFrag"
+        android:name="mx.itesm.bcr.plantifybcr.AcercaDeFrag"
+        android:label="acerca_de_fragment"
+        tools:layout="@layout/acerca_de_fragment" />
+    <fragment
+        android:id="@+id/agregarGrupoFrag"
+        android:name="mx.itesm.bcr.plantifybcr.AgregarGrupoFrag"
+        android:label="agregar_grupo_fragment"
+        tools:layout="@layout/agregar_grupo_fragment" />
+    <fragment
+        android:id="@+id/agregarPlantaFrag"
+        android:name="mx.itesm.bcr.plantifybcr.AgregarPlantaFrag"
+        android:label="agregar_planta_fragment"
+        tools:layout="@layout/agregar_planta_fragment" />
+    <fragment
+        android:id="@+id/infoWikiPlantaFrag"
+        android:name="mx.itesm.bcr.plantifybcr.InfoWikiPlantaFrag"
+        android:label="info_wiki_planta_fragment"
+        tools:layout="@layout/info_wiki_planta_fragment" />
 </navigation>
