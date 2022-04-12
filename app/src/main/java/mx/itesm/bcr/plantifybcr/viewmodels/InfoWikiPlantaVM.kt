@@ -1,4 +1,4 @@
-package mx.itesm.bcr.plantifybcr
+package mx.itesm.bcr.plantifybcr.viewmodels
 
 import androidx.lifecycle.ViewModel
 
