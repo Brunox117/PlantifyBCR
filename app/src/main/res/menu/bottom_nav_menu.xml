@@ -5,15 +5,19 @@
         android:id="@+id/HomeFrag"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
+    <item
+        android:id="@+id/agregarPlantaFrag"
+        android:icon="@drawable/ic_add_plant_black_24dp"
+        android:title="@string/title_addPlant" />
 
     <item
         android:id="@+id/wikiFrag"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:icon="@drawable/ic_wiki_black_24dp"
+        android:title="@string/title_wiki" />
 
     <item
         android:id="@+id/ajustesFrag"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:icon="@drawable/ic_configuration_black_24dp"
+        android:title="@string/title_configuration" />
 
 </menu>
