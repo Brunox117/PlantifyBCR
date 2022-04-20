@@ -14,13 +14,13 @@
     <fragment
         android:id="@+id/wikiFrag"
         android:name="mx.itesm.bcr.plantifybcr.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_wiki"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/ajustesFrag"
         android:name="mx.itesm.bcr.plantifybcr.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_configuration"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/plantaEspFrag"
@@ -65,7 +65,7 @@
     <fragment
         android:id="@+id/agregarPlantaFrag"
         android:name="mx.itesm.bcr.plantifybcr.AgregarPlantaFrag"
-        android:label="agregar_planta_fragment"
+        android:label="@string/title_addPlant"
         tools:layout="@layout/agregar_planta_fragment" />
     <fragment
         android:id="@+id/infoWikiPlantaFrag"

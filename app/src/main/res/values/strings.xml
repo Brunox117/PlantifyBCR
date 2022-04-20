@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">PlantifyBCR</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_addPlant">Agregar planta</string>
+    <string name="title_wiki">Wiki</string>
+    <string name="title_configuration">Configuración</string>
 </resources>
