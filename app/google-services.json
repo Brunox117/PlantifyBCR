@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "867187392967",
+    "project_id": "plantifybcr-71577",
+    "storage_bucket": "plantifybcr-71577.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867187392967:android:f351e38efd5b553484d9e2",
+        "android_client_info": {
+          "package_name": "mx.itesm.bcr.plantifybcr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "867187392967-fj623h99i52olj01m1b2dnn0mmd0bg68.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.itesm.bcr.plantifybcr",
+            "certificate_hash": "865923d0a8cb6591dca31e7e1cdb0ba7caa3e061"
+          }
+        },
+        {
+          "client_id": "867187392967-nbbvris72b0mc0m5l5u7ab3dh3an5kgp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKFSyjofO30sWMKnROA8fbh4m1F22pLK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "867187392967-nbbvris72b0mc0m5l5u7ab3dh3an5kgp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
