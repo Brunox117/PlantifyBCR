@@ -32,7 +32,6 @@ class AgregarPlantaFrag : Fragment() {
         // TODO: Use the ViewModel
     }
 
-
 }
 /*private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
