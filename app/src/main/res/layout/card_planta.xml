@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cvPlanta"
+    android:layout_margin="12dp"
+    card_view:cardBackgroundColor="#AEC14D"
+    card_view:cardCornerRadius="20dp"
+    card_view:cardElevation="8dp"
+    card_view:contentPadding="4dp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/ivPlanta"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Planta 1"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:id="@+id/tvNombreP"
+            android:layout_toEndOf="@id/ivPlanta"
+            android:layout_toRightOf="@id/ivPlanta"
+            android:layout_alignParentTop="true"
+            android:textSize="25dp"
+            android:fontFamily="@font/bree_serif"/>
+
+        <ImageView
+            android:id="@+id/ivGota"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@id/tvNombreP"
+            android:layout_marginTop="16dp"
+            android:layout_toEndOf="@id/ivPlanta"
+            android:layout_toRightOf="@id/ivPlanta" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100%"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:id="@+id/tvAguaP"
+            android:layout_toEndOf="@id/ivGota"
+            android:layout_toRightOf="@id/ivGota"
+            android:layout_below="@id/tvNombreP"
+            android:textSize="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/bree_serif"/>
+
+
+
+
+
+            
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
