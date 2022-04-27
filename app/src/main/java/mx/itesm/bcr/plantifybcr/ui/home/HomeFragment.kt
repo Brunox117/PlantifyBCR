@@ -39,7 +39,6 @@ class HomeFragment : Fragment()
 
         recyclerView?.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView?.adapter = adapter
-
         return root
 
     }

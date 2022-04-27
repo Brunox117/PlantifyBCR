@@ -13,6 +13,7 @@ class LoginApp : AppCompatActivity() {
     private lateinit var binding: ActivityLoginAppBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.supportActionBar?.hide()
         binding = ActivityLoginAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.btnLogin.setOnClickListener{
