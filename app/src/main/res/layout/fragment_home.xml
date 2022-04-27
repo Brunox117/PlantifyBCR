@@ -16,8 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView4"
+        <ImageButton
+            android:id="@+id/btnUserImage"
             android:layout_width="132dp"
             android:layout_height="132dp"
             android:layout_marginRight="16dp"

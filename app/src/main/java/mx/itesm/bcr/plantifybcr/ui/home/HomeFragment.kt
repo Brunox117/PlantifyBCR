@@ -39,6 +39,10 @@ class HomeFragment : Fragment()
 
         recyclerView?.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView?.adapter = adapter
+
+        binding.btnUserImage.setOnClickListener{
+            println("di click")
+        }
         return root
 
     }
