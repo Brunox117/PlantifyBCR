@@ -10,13 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import mx.itesm.bcr.plantifybcr.ListenerRecycler
 import mx.itesm.bcr.plantifybcr.R
 import mx.itesm.bcr.plantifybcr.databinding.FragmentHomeBinding
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaMenuAdaptador
 
-class HomeFragment : Fragment()
-{
+class HomeFragment : Fragment(), ListenerRecycler {
     private var _binding: FragmentHomeBinding? = null
+    private lateinit var adapter: plantaMenuAdaptador
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -35,15 +36,20 @@ class HomeFragment : Fragment()
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val recyclerView = _binding?.rvPlantaHome
-        val adapter = plantaMenuAdaptador()
+        adapter = plantaMenuAdaptador()
 
         recyclerView?.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView?.adapter = adapter
+        adapter.listener = this
         return root
 
     }
-
-
+    override fun itemClicked(position: Int){
+        val planta = adapter.titles[position]
+        println("Click en $planta")
+        val accion = HomeFragmentDirections.actionHomeFragToPlantaEspFrag()
+        findNavController().navigate(accion)
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
