@@ -6,10 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
+import mx.itesm.bcr.plantifybcr.databinding.PlantaEspFragmentBinding
 import mx.itesm.bcr.plantifybcr.viewmodels.PlantaEspVM
 
 class PlantaEspFrag : Fragment() {
 
+
+    private lateinit var binding: PlantaEspFragmentBinding
     companion object {
         fun newInstance() = PlantaEspFrag()
     }
