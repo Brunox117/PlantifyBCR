@@ -12,7 +12,7 @@ import mx.itesm.bcr.plantifybcr.viewmodels.PlantaEspVM
 
 class PlantaEspFrag : Fragment() {
 
-
+    private val args: PlantaEspFragArgs by navArgs()
     private lateinit var binding: PlantaEspFragmentBinding
     companion object {
         fun newInstance() = PlantaEspFrag()
@@ -24,7 +24,15 @@ class PlantaEspFrag : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.planta_esp_fragment, container, false)
+        binding = PlantaEspFragmentBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.tvNombrePlanta.text = args.nombrePlanta
+        //Aqui llamariamos a la base de datos
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

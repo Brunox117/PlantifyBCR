@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_HomeFrag_to_plantaEspFrag"
             app:destination="@id/plantaEspFrag" />
-        <argument
-            android:name="NombrePlanta"
-            app:argType="string[]" />
     </fragment>
 
     <fragment
@@ -33,7 +30,11 @@
         android:id="@+id/plantaEspFrag"
         android:name="mx.itesm.bcr.plantifybcr.PlantaEspFrag"
         android:label="planta_esp_fragment"
-        tools:layout="@layout/planta_esp_fragment" />
+        tools:layout="@layout/planta_esp_fragment" >
+        <argument
+            android:name="NombrePlanta"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/infoUsuarioFrag"
         android:name="mx.itesm.bcr.plantifybcr.InfoUsuarioFrag"

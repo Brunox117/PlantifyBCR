@@ -47,7 +47,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
     override fun itemClicked(position: Int){
         val planta = adapter.titles[position]
         println("Click en $planta")
-        val accion = HomeFragmentDirections.actionHomeFragToPlantaEspFrag()
+        val accion = HomeFragmentDirections.actionHomeFragToPlantaEspFrag(planta)
         findNavController().navigate(accion)
     }
     override fun onDestroyView() {
