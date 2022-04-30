@@ -7,6 +7,9 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import mx.itesm.bcr.plantifybcr.databinding.ActivityLoginAppBinding
 
 class LoginApp : AppCompatActivity() {
@@ -22,7 +25,6 @@ class LoginApp : AppCompatActivity() {
         }
         verificarLogin()
     }
-
     private fun verificarLogin() {
         val usuario = FirebaseAuth.getInstance().currentUser
         if(usuario != null){
@@ -42,9 +44,14 @@ class LoginApp : AppCompatActivity() {
         val response = result.idpResponse
         if(result.resultCode == RESULT_OK){
             val usuario = FirebaseAuth.getInstance().currentUser
-            println("Bienvenido: ${usuario?.displayName}")
-            println("Correo: ${usuario?.email}")
-            println("Token: ${usuario?.uid}")
+            //Creamos el usuario
+            val baseDatos = Firebase.database
+            val nombre = usuario?.displayName.toString()
+            val tokken = usuario?.uid.toString()
+            val correo = usuario?.email.toString()
+            val user = Usuario(tokken, nombre, correo)
+            val referencia = baseDatos.getReference("/Usuarios/$tokken")
+            referencia.setValue(user)
             entrarApp()
         }else{
             println("Error en tus datos")
