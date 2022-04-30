@@ -14,6 +14,7 @@ import mx.itesm.bcr.plantifybcr.databinding.ActivityLoginAppBinding
 
 class LoginApp : AppCompatActivity() {
     private lateinit var binding: ActivityLoginAppBinding
+    private lateinit var tokken: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.supportActionBar?.hide()
@@ -27,6 +28,7 @@ class LoginApp : AppCompatActivity() {
     }
     private fun verificarLogin() {
         val usuario = FirebaseAuth.getInstance().currentUser
+        tokken = usuario?.uid.toString()
         if(usuario != null){
             println("Bienvenido")
             entrarApp()
@@ -46,8 +48,8 @@ class LoginApp : AppCompatActivity() {
             val usuario = FirebaseAuth.getInstance().currentUser
             //Creamos el usuario
             val baseDatos = Firebase.database
+            tokken = usuario?.uid.toString()
             val nombre = usuario?.displayName.toString()
-            val tokken = usuario?.uid.toString()
             val correo = usuario?.email.toString()
             val user = Usuario(tokken, nombre, correo)
             val referencia = baseDatos.getReference("/Usuarios/$tokken")
@@ -60,6 +62,7 @@ class LoginApp : AppCompatActivity() {
 
     private fun entrarApp() {
         val intApp = Intent(this,MainActivity::class.java)
+        intApp.putExtra("tokken",tokken)
         startActivity(intApp)
         //Borrar pantalla login
         finish()
