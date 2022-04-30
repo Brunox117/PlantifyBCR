@@ -6,21 +6,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
+import mx.itesm.bcr.plantifybcr.databinding.InfoWikiPlantaFragmentBinding
 import mx.itesm.bcr.plantifybcr.viewmodels.InfoWikiPlantaVM
 
 class InfoWikiPlantaFrag : Fragment() {
+
+    private val args: InfoWikiPlantaFragArgs by navArgs()
+    private lateinit var binding: InfoWikiPlantaFragmentBinding
+    private lateinit var viewModel: InfoWikiPlantaVM
 
     companion object {
         fun newInstance() = InfoWikiPlantaFrag()
     }
 
-    private lateinit var viewModel: InfoWikiPlantaVM
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.info_wiki_planta_fragment, container, false)
+        binding = InfoWikiPlantaFragmentBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.tvNombrePlantaWInfo.text = args.plantaWiki
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

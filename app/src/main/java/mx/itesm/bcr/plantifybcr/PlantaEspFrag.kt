@@ -14,11 +14,11 @@ class PlantaEspFrag : Fragment() {
 
     private val args: PlantaEspFragArgs by navArgs()
     private lateinit var binding: PlantaEspFragmentBinding
+    private lateinit var viewModel: PlantaEspVM
+
     companion object {
         fun newInstance() = PlantaEspFrag()
     }
-
-    private lateinit var viewModel: PlantaEspVM
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
