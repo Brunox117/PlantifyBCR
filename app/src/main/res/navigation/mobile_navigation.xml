@@ -19,7 +19,11 @@
         android:id="@+id/wikiFrag"
         android:name="mx.itesm.bcr.plantifybcr.ui.dashboard.DashboardFragment"
         android:label="@string/title_wiki"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_wikiFrag_to_infoWikiPlantaFrag"
+            app:destination="@id/infoWikiPlantaFrag" />
+    </fragment>
 
     <fragment
         android:id="@+id/ajustesFrag"
@@ -79,5 +83,9 @@
         android:id="@+id/infoWikiPlantaFrag"
         android:name="mx.itesm.bcr.plantifybcr.InfoWikiPlantaFrag"
         android:label="info_wiki_planta_fragment"
-        tools:layout="@layout/info_wiki_planta_fragment" />
+        tools:layout="@layout/info_wiki_planta_fragment" >
+        <argument
+            android:name="PlantaWiki"
+            app:argType="string" />
+    </fragment>
 </navigation>
