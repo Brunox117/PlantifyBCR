@@ -27,9 +27,9 @@ class MainActivity : AppCompatActivity() {
 
         val objetoIntent: Intent =intent
         tokken=objetoIntent.getStringExtra("tokken").toString()
-
+        println("Main activity recibio el tokken: $tokken")
         HomeViewModel.setTokken(tokken)
-
+        println("El tokken fue enviado al fragmento")
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)

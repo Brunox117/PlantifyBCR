@@ -52,7 +52,7 @@ class LoginApp : AppCompatActivity() {
             val nombre = usuario?.displayName.toString()
             val correo = usuario?.email.toString()
             val user = Usuario(tokken, nombre, correo)
-            val referencia = baseDatos.getReference("/Usuarios/$tokken")
+            val referencia = baseDatos.getReference("/Usuarios/$tokken/infoUsuario")
             referencia.setValue(user)
             entrarApp()
         }else{
