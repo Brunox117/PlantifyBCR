@@ -11,7 +11,7 @@ import mx.itesm.bcr.plantifybcr.R
 
 class plantaWikiAdaptador: RecyclerView.Adapter<plantaWikiAdaptador.ViewHolder>(){
 
-    val titles= arrayOf("Planta 1","Planta 2", "Planta 3")
+    val titles= arrayOf("Cactus","Lavanda", "Vainilla")
     val images = intArrayOf(R.drawable.plant1,R.drawable.plant2,R.drawable.plant3)
     var listener: ListenerRecycler? = null
 
