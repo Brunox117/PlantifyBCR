@@ -10,13 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import mx.itesm.bcr.plantifybcr.ListenerRecycler
 import mx.itesm.bcr.plantifybcr.R
 
-class plantaMenuAdaptador: RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder>() {
+class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder>() {
 
     val titles = arrayOf("Cactus","Hierbabuena","Menta")
     val percentages = arrayOf("12%","56%","88%")
     val images = intArrayOf(R.drawable.plant1,R.drawable.plant2,R.drawable.plant3)
     var listener: ListenerRecycler? = null
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_planta,viewGroup,false)
         return ViewHolder(v)

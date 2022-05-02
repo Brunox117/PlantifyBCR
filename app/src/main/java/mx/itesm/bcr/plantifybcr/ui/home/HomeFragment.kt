@@ -18,6 +18,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import mx.itesm.bcr.plantifybcr.ListenerRecycler
 import mx.itesm.bcr.plantifybcr.MainActivity
+import mx.itesm.bcr.plantifybcr.Planta
 import mx.itesm.bcr.plantifybcr.databinding.FragmentHomeBinding
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaMenuAdaptador
 
@@ -27,6 +28,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
     private lateinit var adapter: plantaMenuAdaptador
     private val viewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -43,8 +45,6 @@ class HomeFragment : Fragment(), ListenerRecycler {
         val root: View = binding.root
         val recyclerView = _binding?.rvPlantaHome
         adapter = plantaMenuAdaptador()
-
-
         recyclerView?.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView?.adapter = adapter
         adapter.listener = this
@@ -68,17 +68,22 @@ class HomeFragment : Fragment(), ListenerRecycler {
 
     private fun descargarDatosNube() {
         val baseDatos = Firebase.database
-        val referenciaUsuario = baseDatos.getReference("/Usuarios/$_tokken/infoUsuario")
+        //Obtenemos la informacion del usuario
+        val referenciaUsuario = baseDatos.getReference("/Usuarios/$_tokken")
         referenciaUsuario.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                var nombre = snapshot.child("/nombre").value
+                //Recuperamos el nombre
+                var nombre = snapshot.child("/infoUsuario/nombre").value
                 binding.tvUsuario.text = nombre.toString()
+                //Recuperamos la plantas de nuestro usuario
+                var plantas = snapshot.child("/Plantas").value
+                println("Las plantas son: ${plantas}")
+                //Este codigo ya funciona pero a medias
             }
             override fun onCancelled(error: DatabaseError) {
                 print("Error: $error")
             }
         })
-
     }
 
 
