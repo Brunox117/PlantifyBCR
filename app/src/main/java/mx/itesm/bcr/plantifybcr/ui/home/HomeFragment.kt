@@ -48,7 +48,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
         recyclerView?.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView?.adapter = adapter
         adapter.listener = this
-
+        binding.button2.text = "Mis grupos"
         return root
 
     }
@@ -61,7 +61,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
             })
             println("El tokken es: $_tokken")
             descargarDatosNube()
-        }, 500)
+        }, 250)
 
     }
 
@@ -79,6 +79,19 @@ class HomeFragment : Fragment(), ListenerRecycler {
                 var plantas = snapshot.child("/Plantas").value
                 println("Las plantas son: ${plantas}")
                 //Este codigo ya funciona pero a medias
+            }
+            override fun onCancelled(error: DatabaseError) {
+                print("Error: $error")
+            }
+        })
+
+        val referenciaPlantas = baseDatos.getReference("/Usuarios/$_tokken/Plantas")
+        referenciaPlantas.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for(planta in snapshot.children){
+                    var d:Map<String,String> = planta.value as Map<String, String>
+                    println("planta = ${d["nombre"]}")
+                }
             }
             override fun onCancelled(error: DatabaseError) {
                 print("Error: $error")
