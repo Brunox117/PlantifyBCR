@@ -85,11 +85,15 @@ class HomeFragment : Fragment(), ListenerRecycler {
         referenciaPlantas.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    var arrPlantas = mutableListOf<Planta>()
                 for(planta in snapshot.children){
                     var d:Map<String,String> = planta.value as Map<String, String>
-                    println("planta  = $planta ----------")
-                    //println("planta = ${d["nombre"]}")
+                    val plantaArr = planta.getValue(Planta::class.java)
+                    if (plantaArr != null) {
+                        arrPlantas.add(plantaArr)
+                    }
                 }
+                println("Arreglo de plantas = ${arrPlantas[0]} ===========")
             }
             }
             override fun onCancelled(error: DatabaseError) {

@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import mx.itesm.bcr.plantifybcr.ListenerRecycler
 import mx.itesm.bcr.plantifybcr.R
+import mx.itesm.bcr.plantifybcr.ui.home.HomeViewModel
 
 class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder>() {
 
