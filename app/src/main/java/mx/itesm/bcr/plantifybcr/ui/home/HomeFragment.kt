@@ -91,8 +91,10 @@ class HomeFragment : Fragment(), ListenerRecycler {
                     val plantaArr = planta.getValue(Planta::class.java)
                     if (plantaArr != null) {
                         arrPlantas.add(plantaArr)
+
                     }
                 }
+                    adapter.setData(arrPlantas.toTypedArray())
                 println("Arreglo de plantas = ${arrPlantas[0]} ===========")
             }
             }
