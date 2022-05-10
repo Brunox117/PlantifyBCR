@@ -41,7 +41,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
         /*val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)*/
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater)
         val root: View = binding.root
         val recyclerView = _binding?.rvPlantaHome
         adapter = plantaMenuAdaptador()
@@ -70,15 +70,11 @@ class HomeFragment : Fragment(), ListenerRecycler {
         val baseDatos = Firebase.database
         //Obtenemos la informacion del usuario
         val referenciaUsuario = baseDatos.getReference("/Usuarios/$_tokken")
-        referenciaUsuario.addValueEventListener(object: ValueEventListener{
+        referenciaUsuario.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 //Recuperamos el nombre
                 var nombre = snapshot.child("/infoUsuario/nombre").value
                 binding.tvUsuario.text = nombre.toString()
-                //Recuperamos la plantas de nuestro usuario
-                var plantas = snapshot.child("/Plantas").value
-                println("Las plantas son: ${plantas}")
-                //Este codigo ya funciona pero a medias
             }
             override fun onCancelled(error: DatabaseError) {
                 print("Error: $error")
@@ -86,12 +82,15 @@ class HomeFragment : Fragment(), ListenerRecycler {
         })
 
         val referenciaPlantas = baseDatos.getReference("/Usuarios/$_tokken/Plantas")
-        referenciaPlantas.addValueEventListener(object: ValueEventListener{
+        referenciaPlantas.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
                 for(planta in snapshot.children){
                     var d:Map<String,String> = planta.value as Map<String, String>
-                    println("planta = ${d["nombre"]}")
+                    println("planta  = $planta ----------")
+                    //println("planta = ${d["nombre"]}")
                 }
+            }
             }
             override fun onCancelled(error: DatabaseError) {
                 print("Error: $error")

@@ -23,25 +23,51 @@ import mx.itesm.bcr.plantifybcr.ui.notifications.NotificationsFragment
 import android.Manifest.permission.CAMERA
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.Context
+import android.os.Handler
+import androidx.fragment.app.activityViewModels
 import mx.itesm.bcr.plantifybcr.databinding.ActivityLoginAppBinding
 import mx.itesm.bcr.plantifybcr.databinding.AgregarPlantaFragmentBinding
 
 import mx.itesm.bcr.plantifybcr.viewmodels.AgregarPlantaVM
+import java.util.*
 
 class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
-
+    private val viewModel: HomeViewModel by activityViewModels()
+    private var _tokken = ""
+    private lateinit var binding: AgregarPlantaFragmentBinding
     private var listener: OnFragmentActionsListener? = null
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.agregar_planta_fragment, container, false)
+        binding = AgregarPlantaFragmentBinding.inflate(layoutInflater)
+        val root: View = binding.root
+        binding.btnAgregarPlanta.setOnClickListener {
+            agregarPlanta()
+        }
+        return root
+    }
+
+    private fun agregarPlanta() {
+        val baseDatos = Firebase.database
+        val nombre = binding.tvNombre.text.toString()
+        val horaRiego = binding.tvHora.text.toString()
+        var iluminacion = "Artificial"
+        val planta = Planta(nombre,horaRiego,iluminacion)
+        val referencia = baseDatos.getReference("/Usuarios/$_tokken/Plantas/$nombre")
+        referencia.setValue(planta)
+        binding.tvNombre.text.clear()
+        binding.tvHora.text.clear()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //addImg.setOnClickListener { listener?.onClickFragmentButton() }
+        Handler().postDelayed(Runnable {
+            //Obtenemos el tokken que paso la activity login a main activity
+            viewModel.tokken.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                _tokken = it.toString()
+            })
+        }, 250)
     }
 
     override fun onAttach(context: Context) {
@@ -57,7 +83,7 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
     }
 
     override fun onClickFragmentButton() {
-        TODO("Not yet implemented")
+
     }
 }
 
