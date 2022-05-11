@@ -92,50 +92,12 @@
 
             </LinearLayout>
 
-            <RadioGroup
+            <Button
+                android:id="@+id/btnIluminacion"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="244dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Nivel iluminación: "
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <RadioButton
-                            android:id="@+id/btnIluminacion1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Natural" />
-
-                        <RadioButton
-                            android:id="@+id/btnIluminacion2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Artificial" />
-
-                        <RadioButton
-                            android:id="@+id/btnIluminacion3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Otra" />
-                    </LinearLayout>
-                </LinearLayout>
-            </RadioGroup>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ELEGIR ILUMINACION" />
 
             <Button
                 android:id="@+id/btnAgregarPlanta"
