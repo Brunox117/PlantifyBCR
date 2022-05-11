@@ -12,16 +12,21 @@ import mx.itesm.bcr.plantifybcr.R
 import mx.itesm.bcr.plantifybcr.ui.home.HomeViewModel
 
 class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder>() {
-    val titles = arrayOf("Cactus","Hierbabuena","Menta")
-    val percentages = arrayOf("12%","56%","88%")
-    val images = intArrayOf(R.drawable.plant1,R.drawable.plant2,R.drawable.plant3)
+    var titles = arrayOf("Cactus","Hierbabuena","Menta")
+    var percentages = arrayOf("12%","56%","88%")
+    var images = intArrayOf(R.drawable.plant1,R.drawable.plant2,R.drawable.plant3)
+    var titles2 = mutableListOf<String>()
+    var iluminacion = mutableListOf<String>()
     var listener: ListenerRecycler? = null
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_planta,viewGroup,false)
         return ViewHolder(v)
     }
     fun setData(arrPlantas: Array<Planta>){
-        println("Arreglo de plantas del adaptador ${arrPlantas[0]}")
+        for(planta in arrPlantas){
+            titles2.add(planta.nombre)
+            iluminacion.add(planta.iluminacion)
+        }
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         viewHolder.itemTitle.text = titles[i]
@@ -29,7 +34,6 @@ class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder
         viewHolder.itemImage.setImageResource(images[i])
         viewHolder.itemView.setOnClickListener {
             listener?.itemClicked(i)
-
         }
     }
 
@@ -41,7 +45,6 @@ class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder
         var itemImage: ImageView
         var itemTitle: TextView
         var itemPercentage: TextView
-
         init {
             itemImage = itemView.findViewById(R.id.ivPlanta)
             itemTitle = itemView.findViewById(R.id.tvNombreP)
