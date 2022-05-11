@@ -43,7 +43,7 @@ class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder
         var itemPercentage: TextView
 
         init {
-            itemImage = itemView.findViewById(R.id.rv_ivPlanta)
+            itemImage = itemView.findViewById(R.id.ivPlanta)
             itemTitle = itemView.findViewById(R.id.tvNombreP)
             itemPercentage = itemView.findViewById(R.id.tvAguaP)
         }
