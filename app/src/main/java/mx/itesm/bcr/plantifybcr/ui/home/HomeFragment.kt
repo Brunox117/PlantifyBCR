@@ -16,6 +16,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import mx.itesm.bcr.plantifybcr.ListenerRecycler
+import mx.itesm.bcr.plantifybcr.Planta
 import mx.itesm.bcr.plantifybcr.carouselAdaptador
 import mx.itesm.bcr.plantifybcr.databinding.FragmentHomeBinding
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaMenuAdaptador
@@ -101,7 +102,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
 
                     }
                 }
-                    adapter.setData(arrPlantas.toTypedArray())
+                    adapterPH.setData(arrPlantas.toTypedArray())
                 println("Arreglo de plantas = ${arrPlantas[0]} ===========")
             }
             }
