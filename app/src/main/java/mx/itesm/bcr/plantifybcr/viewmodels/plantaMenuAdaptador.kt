@@ -1,6 +1,5 @@
 package mx.itesm.bcr.plantifybcr.viewmodels
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,19 +36,16 @@ class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder
     override fun getItemCount(): Int {
         return titles.size
     }
+
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var itemImage: ImageView
         var itemTitle: TextView
         var itemPercentage: TextView
 
         init {
-            itemImage = itemView.findViewById(R.id.ivPlanta)
+            itemImage = itemView.findViewById(R.id.rv_ivPlanta)
             itemTitle = itemView.findViewById(R.id.tvNombreP)
             itemPercentage = itemView.findViewById(R.id.tvAguaP)
         }
-
     }
-
-
-
 }

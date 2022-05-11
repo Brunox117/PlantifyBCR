@@ -1,6 +1,5 @@
 package mx.itesm.bcr.plantifybcr.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -17,15 +16,16 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import mx.itesm.bcr.plantifybcr.ListenerRecycler
-import mx.itesm.bcr.plantifybcr.MainActivity
-import mx.itesm.bcr.plantifybcr.Planta
+import mx.itesm.bcr.plantifybcr.carouselAdaptador
 import mx.itesm.bcr.plantifybcr.databinding.FragmentHomeBinding
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaMenuAdaptador
+import mx.itesm.bcr.plantifybcr.viewmodels.plantaWikiAdaptador
 
 
 class HomeFragment : Fragment(), ListenerRecycler {
     private var _binding: FragmentHomeBinding? = null
-    private lateinit var adapter: plantaMenuAdaptador
+    private lateinit var adapterPH: plantaMenuAdaptador
+    private lateinit var adapterGH: carouselAdaptador
     private val viewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""
 
@@ -43,12 +43,19 @@ class HomeFragment : Fragment(), ListenerRecycler {
 
         _binding = FragmentHomeBinding.inflate(inflater)
         val root: View = binding.root
-        val recyclerView = _binding?.rvPlantaHome
-        adapter = plantaMenuAdaptador()
-        recyclerView?.layoutManager = LinearLayoutManager(this.requireContext())
-        recyclerView?.adapter = adapter
-        adapter.listener = this
-        binding.button2.text = "Mis grupos"
+
+        //RecyclerView de las plantas
+        val recyclerViewPH = _binding?.rvPlantaHome
+        adapterPH = plantaMenuAdaptador()
+        recyclerViewPH?.layoutManager = LinearLayoutManager(this.requireContext())
+        recyclerViewPH?.adapter = adapterPH
+        adapterPH.listener = this
+
+        //RecyclerView de los grupos - recyclerViewGrupoHome
+        val recyclerViewGH = _binding?.rvGrupoHome
+        adapterGH = carouselAdaptador()
+        recyclerViewGH?.layoutManager = LinearLayoutManager(this.requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        recyclerViewGH?.adapter = adapterGH
         return root
 
     }
@@ -106,7 +113,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
 
 
     override fun itemClicked(position: Int){
-        val planta = adapter.titles[position]
+        val planta = adapterPH.titles[position]
         println("Click en $planta")
         val accion = HomeFragmentDirections.actionHomeFragToPlantaEspFrag(planta)
         findNavController().navigate(accion)

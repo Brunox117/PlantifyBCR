@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_HomeFrag_to_plantaEspFrag"
             app:destination="@id/plantaEspFrag" />
+        <action
+            android:id="@+id/action_HomeFrag_to_gruposPlantasFrag"
+            app:destination="@id/gruposPlantasFrag" />
     </fragment>
 
     <fragment
