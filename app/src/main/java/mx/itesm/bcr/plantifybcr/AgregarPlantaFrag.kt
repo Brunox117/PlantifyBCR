@@ -22,6 +22,7 @@ import mx.itesm.bcr.plantifybcr.ui.home.HomeViewModel
 import mx.itesm.bcr.plantifybcr.ui.notifications.NotificationsFragment
 import android.Manifest.permission.CAMERA
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Handler
 import androidx.fragment.app.activityViewModels
@@ -36,6 +37,9 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
     private var _tokken = ""
     private lateinit var binding: AgregarPlantaFragmentBinding
     private var listener: OnFragmentActionsListener? = null
+    private val opcionesIluminacion = arrayOf("Natural","Artificial","Ninguna")
+    private var iluminacion = ""
+    private var grupo = "Esta planta no pertenece a ningun grupo"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,6 +49,19 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         binding.btnAgregarPlanta.setOnClickListener {
             agregarPlanta()
         }
+        binding.btnIluminacion.setOnClickListener {
+            val builderSingle = AlertDialog.Builder(requireContext())
+            builderSingle.setTitle("Iluminación")
+            builderSingle.setPositiveButton(getString(android.R.string.ok)){
+                dialog,_ ->
+                dialog.dismiss()
+            }
+            builderSingle.setSingleChoiceItems(opcionesIluminacion,3){
+                dialog,which ->
+                iluminacion = opcionesIluminacion[which]
+            }
+            builderSingle.show()
+        }
         return root
     }
 
@@ -52,10 +69,13 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         val baseDatos = Firebase.database
         val nombre = binding.tvNombre.text.toString()
         val horaRiego = binding.tvHora.text.toString()
-        var iluminacion = "Artificial"
-        val planta = Planta(nombre,horaRiego,iluminacion)
+        val planta = Planta(nombre,horaRiego,iluminacion,grupo)
+        if(grupo == "Esta planta no pertenece a ningun grupo"){
+            println("No agregamos la planta a ningun grupo")
+        }
         val referencia = baseDatos.getReference("/Usuarios/$_tokken/Plantas/$nombre")
         referencia.setValue(planta)
+        iluminacion = ""
         binding.tvNombre.text.clear()
         binding.tvHora.text.clear()
     }
