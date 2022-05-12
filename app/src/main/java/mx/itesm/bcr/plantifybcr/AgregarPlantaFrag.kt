@@ -24,6 +24,7 @@ import android.Manifest.permission.CAMERA
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Handler
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
@@ -50,7 +51,16 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         binding = AgregarPlantaFragmentBinding.inflate(layoutInflater)
         val root: View = binding.root
         binding.btnAgregarPlanta.setOnClickListener {
+            if(binding.tvNombre.toString() == "" || iluminacion == "" || hora == ""){
+                //MENSAJE DE ERROR NO AGREGAMOS EL USUARIO
+                AlertDialog.Builder(requireContext()).apply {
+                  setTitle("Faltan datos")
+                  setMessage("Debes elegir un nombre, una iluminación y una hora de riego")
+                  setPositiveButton("Ok",null)
+                }.show()
+            }else{
             agregarPlanta()
+            }
         }
         binding.btnElegirHora.setOnClickListener {
             mostrarTimePicker()
@@ -93,6 +103,10 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         hora = ""
         iluminacion = ""
         binding.tvNombre.text.clear()
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle("La planta se agrego correctamente!")
+            setPositiveButton("Ok",null)
+        }.show()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
