@@ -52,8 +52,14 @@ class LoginApp : AppCompatActivity() {
             val nombre = usuario?.displayName.toString()
             val correo = usuario?.email.toString()
             val user = Usuario(tokken, nombre, correo)
+            val Casa = "Casa"
+            val plantaEjemplo = Planta("Ejemplo","12AM","natural","No pertenece a un grupo")
             val referencia = baseDatos.getReference("/Usuarios/$tokken/infoUsuario")
             referencia.setValue(user)
+            val referencia2 = baseDatos.getReference("/Usuarios/$tokken/Plantas/PlantaEjemplo")
+            referencia2.setValue(plantaEjemplo)
+            val referencia3 = baseDatos.getReference("/Usuarios/$tokken/Grupos/Casa")
+            referencia3.setValue(Casa)
             entrarApp()
         }else{
             println("Error en tus datos")
