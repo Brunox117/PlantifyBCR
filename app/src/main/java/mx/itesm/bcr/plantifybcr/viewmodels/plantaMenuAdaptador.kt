@@ -25,7 +25,7 @@ class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder
     fun setData(arrPlantas: Array<Planta>){
         for(planta in arrPlantas){
             titles2.add(planta.nombre)
-            iluminacion.add(planta.iluminacion)
+            iluminacion.add("Hora de riego: ${planta.hora}")
         }
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
