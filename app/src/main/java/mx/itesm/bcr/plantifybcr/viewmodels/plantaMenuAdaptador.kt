@@ -9,39 +9,36 @@ import androidx.recyclerview.widget.RecyclerView
 import mx.itesm.bcr.plantifybcr.ListenerRecycler
 import mx.itesm.bcr.plantifybcr.Planta
 import mx.itesm.bcr.plantifybcr.R
-import mx.itesm.bcr.plantifybcr.ui.home.HomeFragment
 import mx.itesm.bcr.plantifybcr.ui.home.HomeViewModel
 
 class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder>() {
-
-    val titles = mutableListOf<String>()
-    var percentages = arrayOf("12%")
-    var images = intArrayOf(R.drawable.plant1)
+    var titles = arrayOf("Cactus","Hierbabuena","Menta")
+    var percentages = arrayOf("12%","56%","88%")
+    var images = intArrayOf(R.drawable.plant1,R.drawable.plant2,R.drawable.plant3)
+    var titles2 = mutableListOf<String>()
     var iluminacion = mutableListOf<String>()
     var listener: ListenerRecycler? = null
-    private var arrHome = HomeFragment()
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-
         val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_planta,viewGroup,false)
         return ViewHolder(v)
     }
-
-    override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        for(planta in arrHome.arrPlantas){
-            titles.add(planta.nombre)
-            iluminacion.add(planta.hora)
+    fun setData(arrPlantas: Array<Planta>){
+        for(planta in arrPlantas){
+            titles2.add(planta.nombre)
+            iluminacion.add(planta.iluminacion)
         }
-        viewHolder.itemTitle.text = titles.toTypedArray()[i]
-        viewHolder.itemPercentage.text = percentages[i]
-        viewHolder.itemImage.setImageResource(images[i])
+    }
+    override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
+        viewHolder.itemTitle.text = titles2[i]
+        viewHolder.itemPercentage.text = iluminacion[i]
+        viewHolder.itemImage.setImageResource(images[1])
         viewHolder.itemView.setOnClickListener {
             listener?.itemClickedPlanta(i)
         }
     }
 
     override fun getItemCount(): Int {
-        return titles.size
+        return titles2.size
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
