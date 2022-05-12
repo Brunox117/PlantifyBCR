@@ -114,7 +114,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
     override fun itemClickedPlanta(position: Int){
         val planta = adapterPH.titles2[position]
         println("Click en $planta")
-        val accion = HomeFragmentDirections.actionHomeFragToPlantaEspFrag(planta)
+        val accion = HomeFragmentDirections.actionHomeFragToPlantaEspFrag(planta,_tokken)
         findNavController().navigate(accion)
     }
 

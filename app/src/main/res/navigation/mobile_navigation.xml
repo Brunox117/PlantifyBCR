@@ -44,6 +44,9 @@
         <argument
             android:name="NombrePlanta"
             app:argType="string" />
+        <argument
+            android:name="tokken"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/infoUsuarioFrag"

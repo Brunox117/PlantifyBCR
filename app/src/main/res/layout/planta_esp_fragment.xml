@@ -98,25 +98,14 @@
                     android:layout_height="120dp"
                     tools:src="@tools:sample/avatars" />
 
-                <LinearLayout
-                    android:layout_width="260dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvPorcentajeLuz"
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:gravity="center_vertical"
-                        android:text="78%" />
-
-                    <TextView
-                        android:id="@+id/tvInfoLuz"
-                        android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:text="El nivel de luz es adecuado" />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/tvIluminacionPlantaEsp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="50dp"
+                    android:text="TextView"
+                    android:textAlignment="center" />
 
             </LinearLayout>
 
