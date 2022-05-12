@@ -31,7 +31,7 @@ class carouselAdaptador(): RecyclerView.Adapter<carouselAdaptador.ViewHolder>() 
         viewHolder.itemTitle.text = titles[i]
         viewHolder.itemImage.setImageResource(images[i])
         viewHolder.itemView.setOnClickListener {
-            listener?.itemClicked(i)
+            listener?.itemClickedGrupo(i)
         }
     }
 

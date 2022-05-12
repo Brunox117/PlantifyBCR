@@ -43,11 +43,15 @@ class DashboardFragment : Fragment(),ListenerRecycler {
         return root
     }
 
-    override fun itemClicked(position: Int) {
+    override fun itemClickedPlanta(position: Int) {
         val plantaWiki = adaptador.titles[position]
         println("click en $plantaWiki")
         val accion = DashboardFragmentDirections.actionWikiFragToInfoWikiPlantaFrag(plantaWiki)
         findNavController().navigate(accion)
+    }
+
+    override fun itemClickedGrupo(position: Int) {
+        TODO("Not yet implemented")
     }
 
     override fun onDestroyView() {

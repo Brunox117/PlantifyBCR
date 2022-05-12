@@ -9,31 +9,34 @@ import androidx.recyclerview.widget.RecyclerView
 import mx.itesm.bcr.plantifybcr.ListenerRecycler
 import mx.itesm.bcr.plantifybcr.Planta
 import mx.itesm.bcr.plantifybcr.R
+import mx.itesm.bcr.plantifybcr.ui.home.HomeFragment
 import mx.itesm.bcr.plantifybcr.ui.home.HomeViewModel
 
 class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder>() {
-    var titles = arrayOf("Cactus","Hierbabuena","Menta")
-    var percentages = arrayOf("12%","56%","88%")
-    var images = intArrayOf(R.drawable.plant1,R.drawable.plant2,R.drawable.plant3)
-    var titles2 = mutableListOf<String>()
+
+    val titles = mutableListOf<String>()
+    var percentages = arrayOf("12%")
+    var images = intArrayOf(R.drawable.plant1)
     var iluminacion = mutableListOf<String>()
     var listener: ListenerRecycler? = null
+    private var arrHome = HomeFragment()
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+
         val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_planta,viewGroup,false)
         return ViewHolder(v)
     }
-    fun setData(arrPlantas: Array<Planta>){
-        for(planta in arrPlantas){
-            titles2.add(planta.nombre)
-            iluminacion.add(planta.iluminacion)
-        }
-    }
+
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.itemTitle.text = titles[i]
+        for(planta in arrHome.arrPlantas){
+            titles.add(planta.nombre)
+            iluminacion.add(planta.hora)
+        }
+        viewHolder.itemTitle.text = titles.toTypedArray()[i]
         viewHolder.itemPercentage.text = percentages[i]
         viewHolder.itemImage.setImageResource(images[i])
         viewHolder.itemView.setOnClickListener {
-            listener?.itemClicked(i)
+            listener?.itemClickedPlanta(i)
         }
     }
 

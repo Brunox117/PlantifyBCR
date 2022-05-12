@@ -29,6 +29,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
     private lateinit var adapterGH: carouselAdaptador
     private val viewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""
+    var arrPlantas = mutableListOf<Planta>()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -45,20 +46,28 @@ class HomeFragment : Fragment(), ListenerRecycler {
         _binding = FragmentHomeBinding.inflate(inflater)
         val root: View = binding.root
 
+        //RecyclerView de los grupos - recyclerViewGrupoHome
+        crearRVGrupos()
+
         //RecyclerView de las plantas
+
+        return root
+    }
+
+    private fun crearRVGrupos() {
+        val recyclerViewGH = _binding?.rvGrupoHome
+        adapterGH = carouselAdaptador()
+        recyclerViewGH?.layoutManager = LinearLayoutManager(this.requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        recyclerViewGH?.adapter = adapterGH
+        adapterGH.listener = this
+    }
+
+    private fun crearRVPlantas() {
         val recyclerViewPH = _binding?.rvPlantaHome
         adapterPH = plantaMenuAdaptador()
         recyclerViewPH?.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerViewPH?.adapter = adapterPH
         adapterPH.listener = this
-
-        //RecyclerView de los grupos - recyclerViewGrupoHome
-        val recyclerViewGH = _binding?.rvGrupoHome
-        adapterGH = carouselAdaptador()
-        recyclerViewGH?.layoutManager = LinearLayoutManager(this.requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        recyclerViewGH?.adapter = adapterGH
-        return root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,7 +79,9 @@ class HomeFragment : Fragment(), ListenerRecycler {
             println("El tokken es: $_tokken")
             descargarDatosNube()
         }, 250)
-
+        Handler().postDelayed({
+            crearRVPlantas()
+        },400)
     }
 
 
@@ -93,7 +104,6 @@ class HomeFragment : Fragment(), ListenerRecycler {
         referenciaPlantas.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-                    var arrPlantas = mutableListOf<Planta>()
                 for(planta in snapshot.children){
                     var d:Map<String,String> = planta.value as Map<String, String>
                     val plantaArr = planta.getValue(Planta::class.java)
@@ -102,8 +112,9 @@ class HomeFragment : Fragment(), ListenerRecycler {
 
                     }
                 }
-                    adapterPH.setData(arrPlantas.toTypedArray())
-                println("Arreglo de plantas = ${arrPlantas[0]} ===========")
+                    println("arreglo de plantas antes de mandarse: ${arrPlantas}")
+
+                println("Arreglo de plantas del adaptador = ${adapterPH.titles} ===========")
             }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -113,14 +124,24 @@ class HomeFragment : Fragment(), ListenerRecycler {
     }
 
 
-    override fun itemClicked(position: Int){
+    override fun itemClickedPlanta(position: Int){
         val planta = adapterPH.titles[position]
         println("Click en $planta")
         val accion = HomeFragmentDirections.actionHomeFragToPlantaEspFrag(planta)
         findNavController().navigate(accion)
     }
+
+    override fun itemClickedGrupo(position: Int) {
+        val grupo = adapterGH.titles[position]
+        println("Click en $grupo")
+        val accion = HomeFragmentDirections.actionHomeFragToGrupoEspPlantasFrag(grupo)
+        findNavController().navigate(accion)
+
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_HomeFrag_to_gruposPlantasFrag"
             app:destination="@id/gruposPlantasFrag" />
+        <action
+            android:id="@+id/action_HomeFrag_to_grupoEspPlantasFrag"
+            app:destination="@id/grupoEspPlantasFrag" />
     </fragment>
 
     <fragment
@@ -56,7 +59,11 @@
         android:id="@+id/grupoEspPlantasFrag"
         android:name="mx.itesm.bcr.plantifybcr.GrupoEspPlantasFrag"
         android:label="grupo_esp_plantas_fragment"
-        tools:layout="@layout/grupo_esp_plantas_fragment" />
+        tools:layout="@layout/grupo_esp_plantas_fragment" >
+        <argument
+            android:name="NombreGrupo"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/gruposPlantasFrag"
         android:name="mx.itesm.bcr.plantifybcr.GruposPlantasFrag"
