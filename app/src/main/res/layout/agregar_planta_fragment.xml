@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout5"
+    android:id="@+id/btnHora"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AgregarPlantaFrag">
@@ -68,29 +68,12 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <Button
+                android:id="@+id/btnElegirHora"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Hora:"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <EditText
-                    android:id="@+id/tvHora"
-                    android:layout_width="186dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="text" />
-
-            </LinearLayout>
+                android:text="Elegir hora" />
 
             <Button
                 android:id="@+id/btnIluminacion"

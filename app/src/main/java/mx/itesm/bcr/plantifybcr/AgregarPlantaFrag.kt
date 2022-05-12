@@ -25,6 +25,7 @@ import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Handler
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import mx.itesm.bcr.plantifybcr.databinding.ActivityLoginAppBinding
 import mx.itesm.bcr.plantifybcr.databinding.AgregarPlantaFragmentBinding
@@ -35,11 +36,13 @@ import java.util.*
 class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
     private val viewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""
+    private lateinit var manager: FragmentManager
     private lateinit var binding: AgregarPlantaFragmentBinding
     private var listener: OnFragmentActionsListener? = null
     private val opcionesIluminacion = arrayOf("Natural","Artificial","Ninguna")
     private var iluminacion = ""
     private var grupo = "Esta planta no pertenece a ningun grupo"
+    private var hora = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +51,9 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         val root: View = binding.root
         binding.btnAgregarPlanta.setOnClickListener {
             agregarPlanta()
+        }
+        binding.btnElegirHora.setOnClickListener {
+            mostrarTimePicker()
         }
         binding.btnIluminacion.setOnClickListener {
             val builderSingle = AlertDialog.Builder(requireContext())
@@ -65,19 +71,28 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         return root
     }
 
+    private fun mostrarTimePicker() {
+        val timePicker = TimePIcker{time-> onTimeSelected(time)}
+        manager = childFragmentManager
+        timePicker.show(manager,"time")
+    }
+    private fun onTimeSelected(time:String){
+        hora = time
+    }
+
     private fun agregarPlanta() {
         val baseDatos = Firebase.database
         val nombre = binding.tvNombre.text.toString()
-        val horaRiego = binding.tvHora.text.toString()
+        val horaRiego = hora
         val planta = Planta(nombre,horaRiego,iluminacion,grupo)
         if(grupo == "Esta planta no pertenece a ningun grupo"){
             println("No agregamos la planta a ningun grupo")
         }
         val referencia = baseDatos.getReference("/Usuarios/$_tokken/Plantas/$nombre")
         referencia.setValue(planta)
+        hora = ""
         iluminacion = ""
         binding.tvNombre.text.clear()
-        binding.tvHora.text.clear()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
