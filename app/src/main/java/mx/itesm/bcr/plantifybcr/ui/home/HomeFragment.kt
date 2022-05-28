@@ -32,7 +32,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
     private val viewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""
 
-
+    //
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!

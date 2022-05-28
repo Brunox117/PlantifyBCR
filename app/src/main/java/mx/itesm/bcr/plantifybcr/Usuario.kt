@@ -6,3 +6,4 @@ data class Usuario(
     var correo: String="",
     var tipoUsuario: String=""
 )
+//Creamos el tipo usuario por si se usa en un futuro
