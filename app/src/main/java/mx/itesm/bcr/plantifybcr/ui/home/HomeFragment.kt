@@ -1,10 +1,12 @@
 package mx.itesm.bcr.plantifybcr.ui.home
 
+
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -15,18 +17,18 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import mx.itesm.bcr.plantifybcr.ListenerRecycler
-import mx.itesm.bcr.plantifybcr.Planta
-import mx.itesm.bcr.plantifybcr.carouselAdaptador
+import mx.itesm.bcr.plantifybcr.*
 import mx.itesm.bcr.plantifybcr.databinding.FragmentHomeBinding
+import mx.itesm.bcr.plantifybcr.databinding.InfoUsuarioFragmentBinding
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaMenuAdaptador
-import mx.itesm.bcr.plantifybcr.viewmodels.plantaWikiAdaptador
+
 
 
 class HomeFragment : Fragment(), ListenerRecycler {
     private var _binding: FragmentHomeBinding? = null
     private lateinit var adapterPH: plantaMenuAdaptador
     private lateinit var adapterGH: carouselAdaptador
+    private lateinit var bindUsuario: InfoUsuarioFrag
     private val viewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""
 
@@ -34,6 +36,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,6 +48,16 @@ class HomeFragment : Fragment(), ListenerRecycler {
 
         _binding = FragmentHomeBinding.inflate(inflater)
         val root: View = binding.root
+
+        //onClick de imageUsuario
+        binding.btnUserImage.setOnClickListener {
+
+            val builder = AlertDialog.Builder(this.requireContext())
+            val view = layoutInflater.inflate(R.layout.info_usuario_fragment,null)
+            builder.setView(view)
+            val dialog = builder.create()
+            dialog.show()
+        }
 
         //RecyclerView de las plantas
         val recyclerViewPH = _binding?.rvPlantaHome
@@ -58,6 +71,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
         adapterGH = carouselAdaptador()
         recyclerViewGH?.layoutManager = LinearLayoutManager(this.requireContext(),LinearLayoutManager.HORIZONTAL,false)
         recyclerViewGH?.adapter = adapterGH
+
         return root
     }
 
@@ -81,6 +95,8 @@ class HomeFragment : Fragment(), ListenerRecycler {
                 //Recuperamos el nombre
                 var nombre = snapshot.child("/infoUsuario/nombre").value
                 binding.tvUsuario.text = nombre.toString()
+                //bindUsuario = InfoUsuarioFrag()
+                //bindUsuario.setInfo(nombre.toString())
             }
             override fun onCancelled(error: DatabaseError) {
                 print("Error: $error")
