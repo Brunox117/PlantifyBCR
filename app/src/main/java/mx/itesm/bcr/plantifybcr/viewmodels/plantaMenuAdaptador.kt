@@ -18,10 +18,12 @@ class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder
     var titles2 = mutableListOf<String>()
     var iluminacion = mutableListOf<String>()
     var listener: ListenerRecycler? = null
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_planta,viewGroup,false)
         return ViewHolder(v)
     }
+
     fun setData(arrPlantas: Array<Planta>){
         for(planta in arrPlantas){
             titles2.add(planta.nombre)
