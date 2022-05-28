@@ -69,7 +69,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
             })
             println("El tokken es: $_tokken")
             descargarDatosNube()
-        }, 150)
+        }, 100)
     }
 
     private fun descargarDatosNube() {

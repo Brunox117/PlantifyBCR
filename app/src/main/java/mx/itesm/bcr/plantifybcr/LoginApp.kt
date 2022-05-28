@@ -24,8 +24,24 @@ class LoginApp : AppCompatActivity() {
             println("Comenzando autenticacion")
             autenticar()
         }
+        binding.btnLoginEditor.setOnClickListener{
+            autenticarEditor()
+        }
         verificarLogin()
     }
+
+    private fun autenticarEditor() {
+        print("ENtramos a autenticar")
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.GoogleBuilder().build(),
+        )
+        val signInIntent = AuthUI.getInstance()
+            .createSignInIntentBuilder()
+            .setAvailableProviders(providers)
+            .build()
+        signInLauncher.launch(signInIntent)
+    }
+
     private fun verificarLogin() {
         val usuario = FirebaseAuth.getInstance().currentUser
         tokken = usuario?.uid.toString()
@@ -51,7 +67,8 @@ class LoginApp : AppCompatActivity() {
             tokken = usuario?.uid.toString()
             val nombre = usuario?.displayName.toString()
             val correo = usuario?.email.toString()
-            val user = Usuario(tokken, nombre, correo)
+            val tipoUsuario = "sinplan"
+            val user = Usuario(tokken, nombre, correo,tipoUsuario)
             val Casa = "Casa"
             //val plantaEjemplo = Planta("Ejemplo","12AM","natural","No pertenece a un grupo")
             val referencia = baseDatos.getReference("/Usuarios/$tokken/infoUsuario")

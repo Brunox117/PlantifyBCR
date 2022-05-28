@@ -23,107 +23,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/bree_serif"
         android:text="Nombre planta"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <ScrollView
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tvIluminacionPlantaEsp"
+        android:layout_width="92dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="193dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/bree_serif"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNombrePlanta"
-        app:layout_constraintVertical_bias="0.0">
-
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imgLogoAgua"
-                    android:layout_width="90dp"
-                    android:layout_height="120dp"
-                    tools:src="@tools:sample/avatars" />
-
-                <LinearLayout
-                    android:layout_width="260dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvPorcentajeHumedad"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="100%"
-                        android:textAlignment="textStart" />
-
-                    <TextView
-                        android:id="@+id/tvInfoHumedad"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="No es necesario regar" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="90dp"
-                    android:layout_height="120dp"
-                    tools:src="@tools:sample/avatars" />
-
-                <TextView
-                    android:id="@+id/tvIluminacionPlantaEsp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="50dp"
-                    android:text="TextView"
-                    android:textAlignment="center" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvGrupoPlantas"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:text="La planta nombre planta pertenece al grupo "
-                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
-
-            <TextView
-                android:id="@+id/tvInfoPlanta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aqui va la info de la planta este apartado deberia ser lo grande que el usuario desee" />
-
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/tvNombrePlanta" />
 
     <TextView
         android:id="@+id/tvTemperatura"
