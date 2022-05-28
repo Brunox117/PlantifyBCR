@@ -70,11 +70,8 @@ class LoginApp : AppCompatActivity() {
             val tipoUsuario = "sinplan"
             val user = Usuario(tokken, nombre, correo,tipoUsuario)
             val Casa = "Casa"
-            //val plantaEjemplo = Planta("Ejemplo","12AM","natural","No pertenece a un grupo")
             val referencia = baseDatos.getReference("/Usuarios/$tokken/infoUsuario")
             referencia.setValue(user)
-            //val referencia2 = baseDatos.getReference("/Usuarios/$tokken/Plantas/PlantaEjemplo")
-            //referencia2.setValue(plantaEjemplo)
             val referencia3 = baseDatos.getReference("/Usuarios/$tokken/Grupos/Casa")
             referencia3.setValue(Casa)
             entrarApp()
