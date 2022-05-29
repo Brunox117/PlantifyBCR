@@ -40,6 +40,10 @@ class InfoUsuarioFrag : Fragment() {
         },100)
     }
 
+    private fun descargarDatosNube() {
+        TODO("Aqui asignamos los datos")
+    }
+
     fun setInfo(usuario: String) {
         binding.adUsuario.text = usuario
     }
