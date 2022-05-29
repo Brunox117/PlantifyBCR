@@ -1,5 +1,6 @@
 package mx.itesm.bcr.plantifybcr.ui.dashboard
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -68,6 +69,10 @@ class DashboardFragment : Fragment(),ListenerRecycler {
         val baseDatos = Firebase.database
         val referencia = baseDatos.getReference("/Usuarios/$_tokken/infoUsuario/tipoUsuario")
         referencia.setValue(tipoPlan)
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle("Te has sucrito correctamente al plan PRO!")
+            setPositiveButton("Ok",null)
+        }.show()
     }
     //CODIGO CALIDAD
 

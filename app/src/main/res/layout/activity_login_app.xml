@@ -61,30 +61,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_bnegro" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="88dp"
-        android:fontFamily="@font/bree_serif"
-        android:text="Inicia sesión como editor"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/btnLoginEditor"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="142dp"
-        android:layout_marginTop="168dp"
-        android:layout_marginEnd="142dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

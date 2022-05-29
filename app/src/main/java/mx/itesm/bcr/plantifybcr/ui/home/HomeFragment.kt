@@ -28,7 +28,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
     private var _binding: FragmentHomeBinding? = null
     private lateinit var adapterPH: plantaMenuAdaptador
     private lateinit var adapterGH: carouselAdaptador
-    private lateinit var bindUsuario: InfoUsuarioFrag
+    private lateinit var Usuario: InfoUsuarioFrag
     private val viewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""
 
@@ -52,11 +52,8 @@ class HomeFragment : Fragment(), ListenerRecycler {
         //onClick de imageUsuario
         binding.btnUserImage.setOnClickListener {
 
-            val builder = AlertDialog.Builder(this.requireContext())
-            val view = layoutInflater.inflate(R.layout.info_usuario_fragment,null)
-            builder.setView(view)
-            val dialog = builder.create()
-            dialog.show()
+            val accion = HomeFragmentDirections.actionHomeFragToInfoUsuarioFrag()
+            findNavController().navigate(accion)
         }
 
         //RecyclerView de las plantas

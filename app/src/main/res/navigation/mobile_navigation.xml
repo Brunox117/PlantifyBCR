@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_HomeFrag_to_grupoEspPlantasFrag"
             app:destination="@id/grupoEspPlantasFrag" />
+        <action
+            android:id="@+id/action_HomeFrag_to_infoUsuarioFrag"
+            app:destination="@id/infoUsuarioFrag" />
     </fragment>
 
     <fragment

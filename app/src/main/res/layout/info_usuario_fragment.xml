@@ -23,36 +23,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout6" />
 
-    <LinearLayout
-        android:layout_width="245dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="32dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adUsuario">
-
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="@font/bree_serif"
-            android:text="Email:"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/adEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="example@example.com"
-            android:textSize="16sp" />
-    </LinearLayout>
-
     <FrameLayout
         android:id="@+id/frameLayout6"
         android:layout_width="wrap_content"
@@ -77,5 +47,66 @@
                 android:src="@drawable/ic_user_icon" />
         </androidx.cardview.widget.CardView>
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/adEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="108dp"
+        android:layout_weight="2"
+        android:text="example@example.com"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adUsuario" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/bree_serif"
+        android:text="Email:"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/adEmail"
+        app:layout_constraintHorizontal_bias="0.896"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adUsuario" />
+
+    <Button
+        android:id="@+id/btnHazteProIU"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="143dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="144dp"
+        android:text="Hazte PRO!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adEmail" />
+
+    <Button
+        android:id="@+id/btnEditorIU"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="124dp"
+        android:text="Aplica a editor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnHazteProIU" />
+
+    <Button
+        android:id="@+id/btnCancelarSUB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="59dp"
+        android:text="Cancelar suscripcion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditorIU" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
