@@ -1,6 +1,7 @@
 package mx.itesm.bcr.plantifybcr
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Handler
@@ -48,6 +49,13 @@ class InfoUsuarioFrag : Fragment() {
             cancelarSuscripcion()
         }
         //CODIGO CALIDAD ===============================================================================
+        binding.btnLogOutIU.setOnClickListener {
+            AuthUI.getInstance().signOut(requireContext()).addOnCompleteListener {
+                activity?.finish()
+                val intLogin = Intent(requireContext(), LoginApp::class.java)
+                startActivity(intLogin)
+            }
+        }
         val root: View = binding.root
         return root
     }

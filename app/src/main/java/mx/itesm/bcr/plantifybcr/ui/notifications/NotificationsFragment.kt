@@ -34,14 +34,6 @@ class NotificationsFragment : Fragment() {
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        binding.btnLogOut.setOnClickListener {
-            println("SALIENDO DE TU SESION")
-            AuthUI.getInstance().signOut(requireContext()).addOnCompleteListener {
-                activity?.finish()
-                val intLogin = Intent(requireContext(), LoginApp::class.java)
-                startActivity(intLogin)
-            }
-        }
         return root
     }
 
