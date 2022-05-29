@@ -24,12 +24,14 @@ class LoginApp : AppCompatActivity() {
             println("Comenzando autenticacion")
             autenticar()
         }
+        //CODIGO CALIDAD
         binding.btnLoginEditor.setOnClickListener{
             autenticarEditor()
         }
+        //CODIGO CALIDAD
         verificarLogin()
     }
-
+    //CODIGO CALIDAD ===============================================================================
     private fun autenticarEditor() {
         print("ENtramos a autenticar")
         val providers = arrayListOf(
@@ -39,9 +41,39 @@ class LoginApp : AppCompatActivity() {
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
             .build()
-        signInLauncher.launch(signInIntent)
+        signInLauncher2.launch(signInIntent)
     }
 
+    private val signInLauncher2 = registerForActivityResult(
+
+        FirebaseAuthUIActivityResultContract()
+    ) {
+            res ->
+        this.onSignInResultEditor(res)
+    }
+    private fun onSignInResultEditor(result: FirebaseAuthUIAuthenticationResult) {
+        val response = result.idpResponse
+        if(result.resultCode == RESULT_OK){
+            val usuario = FirebaseAuth.getInstance().currentUser
+            //Creamos el usuario
+            val baseDatos = Firebase.database
+            tokken = usuario?.uid.toString()
+            val nombre = usuario?.displayName.toString()
+            val correo = usuario?.email.toString()
+            val tipoUsuario = "editorWiki"
+            val user = Usuario(tokken, nombre, correo,tipoUsuario)
+            val Casa = "Casa"
+            val referencia = baseDatos.getReference("/Usuarios/$tokken/infoUsuario")
+            referencia.setValue(user)
+            val referencia3 = baseDatos.getReference("/Usuarios/$tokken/Grupos/Casa")
+            referencia3.setValue(Casa)
+            entrarApp()
+        }else{
+            println("Error en tus datos")
+        }
+    }
+
+    //CODIGO CALIDAD ===============================================================================
     private fun verificarLogin() {
         val usuario = FirebaseAuth.getInstance().currentUser
         tokken = usuario?.uid.toString()

@@ -48,12 +48,28 @@ class DashboardFragment : Fragment(),ListenerRecycler {
         val root: View = binding.root
         val recyclerView = _binding?.rvPlantaWiki
         adaptador = plantaWikiAdaptador()
-
+        //CODIGO CALIDAD
+        binding.btnAgregarWiki.visibility = View.GONE
+        binding.rvPlantaWiki.visibility = View.GONE
+        binding.tvHaztePro.visibility = View.GONE
+        binding.btnHaztePro.visibility = View.GONE
+        binding.btnHaztePro.setOnClickListener {
+            cambiarPlanUsuario()
+        }
+        //CODIGO CALIDAD
         recyclerView?.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView?.adapter = adaptador
         adaptador.listener = this
         return root
     }
+    //CODIGO CALIDAD
+    private fun cambiarPlanUsuario() {
+        val tipoPlan = "pro"
+        val baseDatos = Firebase.database
+        val referencia = baseDatos.getReference("/Usuarios/$_tokken/infoUsuario/tipoUsuario")
+        referencia.setValue(tipoPlan)
+    }
+    //CODIGO CALIDAD
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Handler().postDelayed({
@@ -61,7 +77,7 @@ class DashboardFragment : Fragment(),ListenerRecycler {
                 _tokken = it.toString()
             })
             descargarDatosNuber()
-        },150)
+        },50)
     }
 
     private fun descargarDatosNuber() {
@@ -88,6 +104,30 @@ class DashboardFragment : Fragment(),ListenerRecycler {
             }
 
         })
+        //CODIGO CALIDAD
+        val referenciaUsuario = baseDatos.getReference("/Usuarios/$_tokken")
+        referenciaUsuario.addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var tipoUsuario = snapshot.child("/infoUsuario/tipoUsuario")
+                //println("El tipo del usuario es: ${tipoUsuario.value}")
+                if(tipoUsuario.value == "editorWiki"){
+                    binding.btnAgregarWiki.visibility = View.VISIBLE
+                    binding.rvPlantaWiki.visibility = View.VISIBLE
+                }
+                if(tipoUsuario.value == "pro"){
+                    binding.rvPlantaWiki.visibility= View.VISIBLE
+                }
+                if(tipoUsuario.value == "sinplan"){
+                    binding.tvHaztePro.visibility = View.VISIBLE
+                    binding.btnHaztePro.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                print("Error $error")
+            }
+        })
+        //CODIGO CALIDAD
     }
 
     override fun itemClickedPlanta(position: Int) {
