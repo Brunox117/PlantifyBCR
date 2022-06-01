@@ -44,6 +44,7 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
     private var iluminacion = ""
     private var grupo = "Esta planta no pertenece a ningun grupo"
     private var hora = ""
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

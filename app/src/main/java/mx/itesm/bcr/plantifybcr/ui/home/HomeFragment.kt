@@ -137,7 +137,6 @@ class HomeFragment : Fragment(), ListenerRecycler {
         findNavController().navigate(accion)
 
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

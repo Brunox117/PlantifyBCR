@@ -26,6 +26,9 @@
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/agregar_grupo_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/agregar_planta_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/agregar_planta_wiki_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/agregar_planta_wiki_fragment_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/card_adminwiki.xml" value="0.4" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/card_planta.xml" value="0.18" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/card_plantawiki.xml" value="0.264" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/carrousel_card.xml" value="0.25" />
@@ -39,6 +42,7 @@
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/planta_esp_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/sensores_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/tutoriales_fragment.xml" value="0.14010416666666667" />
+        <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/wiki_admin_fragment.xml" value="0.19196428571428573" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
       </map>
     </option>

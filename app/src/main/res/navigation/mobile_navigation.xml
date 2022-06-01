@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_wikiFrag_to_infoWikiPlantaFrag"
             app:destination="@id/infoWikiPlantaFrag" />
+        <action
+            android:id="@+id/action_wikiFrag_to_wikiAdmin"
+            app:destination="@id/wikiAdmin" />
     </fragment>
 
     <fragment
@@ -104,4 +107,18 @@
             android:name="PlantaWiki"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/wikiAdmin"
+        android:name="mx.itesm.bcr.plantifybcr.WikiAdmin"
+        android:label="wiki_admin_fragment"
+        tools:layout="@layout/wiki_admin_fragment" >
+        <action
+            android:id="@+id/action_wikiAdmin_to_agregarPlantaWiki"
+            app:destination="@id/agregarPlantaWiki" />
+    </fragment>
+    <fragment
+        android:id="@+id/agregarPlantaWiki"
+        android:name="mx.itesm.bcr.plantifybcr.agregarPlantaWiki"
+        android:label="agregar_planta_wiki_fragment"
+        tools:layout="@layout/agregar_planta_wiki_fragment" />
 </navigation>

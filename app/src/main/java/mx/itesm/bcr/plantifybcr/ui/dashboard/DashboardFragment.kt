@@ -22,6 +22,7 @@ import com.google.firebase.ktx.Firebase
 import mx.itesm.bcr.plantifybcr.ListenerRecycler
 import mx.itesm.bcr.plantifybcr.LoginApp
 import mx.itesm.bcr.plantifybcr.Planta
+import mx.itesm.bcr.plantifybcr.PlantaWiki
 import mx.itesm.bcr.plantifybcr.databinding.FragmentDashboardBinding
 import mx.itesm.bcr.plantifybcr.ui.home.HomeFragmentDirections
 import mx.itesm.bcr.plantifybcr.ui.home.HomeViewModel
@@ -57,12 +58,21 @@ class DashboardFragment : Fragment(),ListenerRecycler {
         binding.btnHaztePro.setOnClickListener {
             cambiarPlanUsuario()
         }
+        binding.btnAgregarWiki.setOnClickListener{
+            cambiarConfiguracion()
+        }
         //CODIGO CALIDAD
         recyclerView?.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView?.adapter = adaptador
         adaptador.listener = this
         return root
     }
+
+    private fun cambiarConfiguracion() {
+        val accion = DashboardFragmentDirections.actionWikiFragToWikiAdmin()
+        findNavController().navigate(accion)
+    }
+
     //CODIGO CALIDAD
     private fun cambiarPlanUsuario() {
         val tipoPlan = "pro"
@@ -91,16 +101,17 @@ class DashboardFragment : Fragment(),ListenerRecycler {
         referenciaWiki.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-                    var arrPlantas = mutableListOf<Planta>()
+                    var arrPlantas = mutableListOf<PlantaWiki>()
                     for(planta in snapshot.children){
                         var d:Map<String,String> = planta.value as Map<String, String>
-                        var plantaArr = planta.getValue(Planta::class.java)
+                        var plantaArr = planta.getValue(PlantaWiki::class.java)
                         if(plantaArr !=null){
                             arrPlantas.add(plantaArr)
                         }
                     }
                     //AQUI MANDAMOS EL ARRAY AL ADAPTADOR
-                    //adaptador.notifyDataSetChanged()
+                    adaptador.setData(arrPlantas.toTypedArray())
+                    adaptador.notifyDataSetChanged()
                 }
             }
 

@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import mx.itesm.bcr.plantifybcr.ListenerRecycler
-import mx.itesm.bcr.plantifybcr.R
+import mx.itesm.bcr.plantifybcr.*
 
 class plantaWikiAdaptador(): RecyclerView.Adapter<plantaWikiAdaptador.ViewHolder>(){
 
     val titles= arrayOf("Cactus","Lavanda", "Vainilla")
+    var titles2= mutableListOf<String>()
     val images = intArrayOf(R.drawable.plant1,R.drawable.plant2,R.drawable.plant3)
     var listener: ListenerRecycler? = null
 
@@ -21,16 +21,23 @@ class plantaWikiAdaptador(): RecyclerView.Adapter<plantaWikiAdaptador.ViewHolder
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.itemTitle.text = titles[i]
-        viewHolder.itemImage.setImageResource(images[i])
+        viewHolder.itemTitle.text = titles2[i]
+        viewHolder.itemImage.setImageResource(images[1])
         viewHolder.itemView.setOnClickListener {
             listener?.itemClickedPlanta(i)
         }
     }
 
-    override fun getItemCount(): Int {
-        return titles.size
+    fun setData(arrPlantas: Array<PlantaWiki>){
+        for(planta in arrPlantas){
+            titles2.add(planta.nombre)
+        }
     }
+
+    override fun getItemCount(): Int {
+        return titles2.size
+    }
+
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var itemImage: ImageView
         var itemTitle: TextView
@@ -40,5 +47,4 @@ class plantaWikiAdaptador(): RecyclerView.Adapter<plantaWikiAdaptador.ViewHolder
             itemTitle = itemView.findViewById(R.id.tvNombrePlantaWiki)
         }
     }
-
 }
