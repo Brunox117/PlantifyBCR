@@ -110,7 +110,6 @@ class HomeFragment : Fragment(), ListenerRecycler {
                     val plantaArr = planta.getValue(Planta::class.java)
                     if (plantaArr != null) {
                         arrPlantas.add(plantaArr)
-
                     }
                 }
                 adapterPH.setData(arrPlantas.toTypedArray())
