@@ -2,12 +2,18 @@ package mx.itesm.bcr.plantifybcr
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import mx.itesm.bcr.plantifybcr.databinding.WikiAdminFragmentBinding
 import mx.itesm.bcr.plantifybcr.ui.home.HomeFragmentDirections
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaWikiAdaptador
@@ -41,12 +47,38 @@ class WikiAdmin : Fragment(),ListenerRAdmin {
         recyclerView?.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView?.adapter = adaptador
         adaptador.listenerAdmin = this
-
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        descargarDatosNube()
+    }
+
+    private fun descargarDatosNube() {
+        val baseDatos = Firebase.database
+        val referenciaWiki = baseDatos.getReference("/Wiki/")
+        referenciaWiki.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    var arrPlantas = mutableListOf<PlantaWiki>()
+                    for(planta in snapshot.children){
+                        var d:Map<String,String> = planta.value as Map<String, String>
+                        var plantaArr = planta.getValue(PlantaWiki::class.java)
+                        if(plantaArr !=null){
+                            arrPlantas.add(plantaArr)
+                        }
+                    }
+                    //AQUI MANDAMOS EL ARRAY AL ADAPTADOR
+                    adaptador.setData(arrPlantas.toTypedArray())
+                    adaptador.notifyDataSetChanged()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                print("Error $error")
+            }
+
+        })
     }
 
     override fun itemClickedEditar(position: Int) {

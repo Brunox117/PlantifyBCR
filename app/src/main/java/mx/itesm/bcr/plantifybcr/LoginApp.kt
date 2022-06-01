@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import mx.itesm.bcr.plantifybcr.databinding.ActivityLoginAppBinding
+import mx.itesm.bcr.plantifybcr.viewmodels.Grupo
 
 class LoginApp : AppCompatActivity() {
     private lateinit var binding: ActivityLoginAppBinding
@@ -54,11 +55,12 @@ class LoginApp : AppCompatActivity() {
             val correo = usuario?.email.toString()
             val tipoUsuario = "sinplan"
             val user = Usuario(tokken, nombre, correo,tipoUsuario)
-            val Casa = "Casa"
+            val nombreGrupo = "Casa"
+            val grupo = Grupo(nombreGrupo)
             val referencia = baseDatos.getReference("/Usuarios/$tokken/infoUsuario")
             referencia.setValue(user)
             val referencia3 = baseDatos.getReference("/Usuarios/$tokken/Grupos/Casa")
-            referencia3.setValue(Casa)
+            referencia3.setValue(grupo)
             entrarApp()
         }else{
             println("Error en tus datos")

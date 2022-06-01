@@ -20,6 +20,7 @@ import com.google.firebase.ktx.Firebase
 import mx.itesm.bcr.plantifybcr.*
 import mx.itesm.bcr.plantifybcr.databinding.FragmentHomeBinding
 import mx.itesm.bcr.plantifybcr.databinding.InfoUsuarioFragmentBinding
+import mx.itesm.bcr.plantifybcr.viewmodels.Grupo
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaMenuAdaptador
 
 
@@ -119,6 +120,29 @@ class HomeFragment : Fragment(), ListenerRecycler {
             override fun onCancelled(error: DatabaseError) {
                 print("Error: $error")
             }
+        })
+
+        val referenciaGrupos = baseDatos.getReference("/Usuarios/$_tokken/Grupos")
+        referenciaGrupos.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    var arrGrupos = mutableListOf<Grupo>()
+                    for(grupo in snapshot.children){
+                        var d:Map<String,String> = grupo.value as Map<String, String>
+                        val grupoArr = grupo.getValue(Grupo::class.java)
+                        if(grupoArr != null){
+                            arrGrupos.add(grupoArr)
+                        }
+                    }
+                    //adaptadorGrupos.setData(arrGrupos.toTypedArray())
+                    //adaptadorGrupos.notifyDataSetChanged()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                print("Error: $error")
+            }
+
         })
     }
 
