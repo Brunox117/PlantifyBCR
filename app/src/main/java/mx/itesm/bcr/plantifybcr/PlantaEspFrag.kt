@@ -1,11 +1,13 @@
 package mx.itesm.bcr.plantifybcr
 
+import android.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -13,6 +15,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import mx.itesm.bcr.plantifybcr.databinding.PlantaEspFragmentBinding
+import mx.itesm.bcr.plantifybcr.ui.home.HomeFragmentDirections
 import mx.itesm.bcr.plantifybcr.viewmodels.PlantaEspVM
 
 class PlantaEspFrag : Fragment() {
@@ -32,7 +35,36 @@ class PlantaEspFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = PlantaEspFragmentBinding.inflate(layoutInflater)
+        binding.btnEliminarPlanta.setOnClickListener {
+            /*AlertDialog.Builder(requireContext()).apply {
+                setTitle("Se eliminará la planta $nombrePlanta de manera permanente estás seguro?")
+                setPositiveButton("Ok",null)
+                setNegativeButton("No",null)
+            }.show()*/
+            eliminarPlanta()
+        }
         return binding.root
+    }
+
+    private fun eliminarPlanta() {
+        val baseDatos = Firebase.database
+        val referenciaPlantaE = baseDatos.getReference("/Usuarios/$tokken/Plantas/$nombrePlanta")
+        referenciaPlantaE.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.ref.removeValue()
+                AlertDialog.Builder(requireContext()).apply {
+                    setTitle("La planta se eliminó correctamente!")
+                    setPositiveButton("Ok",null)
+                }.show()
+                val accion = PlantaEspFragDirections.actionPlantaEspFragToHomeFrag()
+                findNavController().navigate(accion)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                print("Error: $error")
+            }
+
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
