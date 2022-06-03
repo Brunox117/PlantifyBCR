@@ -1,24 +1,21 @@
 package mx.itesm.bcr.plantifybcr.ui.notifications
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.firebase.ui.auth.AuthUI
-import mx.itesm.bcr.plantifybcr.ListenerRecycler
-import mx.itesm.bcr.plantifybcr.LoginApp
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import mx.itesm.bcr.plantifybcr.databinding.FragmentNotificationsBinding
+import mx.itesm.bcr.plantifybcr.*
 import mx.itesm.bcr.plantifybcr.ui.home.HomeFragmentDirections
-import mx.itesm.bcr.plantifybcr.viewmodels.plantaWikiAdaptador
+
 
 class NotificationsFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
+    private val viewModel: NotificationsViewModel by activityViewModels()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -32,8 +29,20 @@ class NotificationsFragment : Fragment() {
         /*val notificationsViewModel =
             ViewModelProvider(this).get(NotificationsViewModel::class.java)*/
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentNotificationsBinding.inflate(inflater)
         val root: View = binding.root
+        binding.btnAcerca.setOnClickListener {
+            val accion = NotificationsFragmentDirections.actionAjustesFragToAcercaDeFrag()
+            findNavController().navigate(accion)
+        }
+        binding.btnSensores.setOnClickListener {
+            val accion = NotificationsFragmentDirections.actionAjustesFragToSensoresFrag()
+            findNavController().navigate(accion)
+        }
+        binding.btnTutoriales.setOnClickListener {
+            val accion = NotificationsFragmentDirections.actionAjustesFragToTutorialesFrag()
+            findNavController().navigate(accion)
+        }
         return root
     }
 

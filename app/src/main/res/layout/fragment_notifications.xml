@@ -4,4 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.NotificationsFragment"/>
+    tools:context=".ui.notifications.NotificationsFragment">
+
+    <Button
+        android:id="@+id/btnGrupos"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:text="Mis grupos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Configuracion"
+        android:textColor="#000000"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSensores"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="20dp"
+        android:text="Sensores"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnGrupos"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <Button
+        android:id="@+id/btnTutoriales"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Tutoriales"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGrupos" />
+
+    <Button
+        android:id="@+id/btnAcerca"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:text="Acerca de"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnTutoriales"
+        app:layout_constraintTop_toBottomOf="@+id/btnSensores" />
+</androidx.constraintlayout.widget.ConstraintLayout>

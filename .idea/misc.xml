@@ -3,13 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/acerca_de_fragment.xml" value="0.20104166666666667" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/activity_login_app.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/activity_main.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/agregar_grupo_fragment.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/agregar_planta_fragment.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/agregar_planta_wiki_fragment.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/card_adminwiki.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/card_planta.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/card_plantawiki.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/carrousel_card.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/fragment_dashboard.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/fragment_notifications.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/info_wiki_planta_fragment.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/planta_esp_fragment.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/sensores_fragment.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/tutoriales_fragment.xml" value="0.38645833333333335" />
+        <entry key="..\:/ProgramsandroidStudio/PlantifyBCR/app/src/main/res/layout/wiki_admin_fragment.xml" value="0.38645833333333335" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/drawable/ic_add_plant_black_24dp.xml" value="0.3045" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/acerca_de_fragment.xml" value="0.3625" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/activity_login_app.xml" value="0.264" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/agregar_grupo_fragment.xml" value="0.3625" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/agregar_planta_fragment.xml" value="0.1640625" />
-        <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/agregar_planta_wiki_fragment.xml" value="0.2625" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/ajustesFrag.xml" value="0.3625" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/fragment_dashboard.xml" value="0.3625" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/fragment_home.xml" value="0.3625" />

@@ -44,7 +44,17 @@
         android:id="@+id/ajustesFrag"
         android:name="mx.itesm.bcr.plantifybcr.ui.notifications.NotificationsFragment"
         android:label="@string/title_configuration"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications" >
+        <action
+            android:id="@+id/action_ajustesFrag_to_sensoresFrag"
+            app:destination="@id/sensoresFrag" />
+        <action
+            android:id="@+id/action_ajustesFrag_to_tutorialesFrag"
+            app:destination="@id/tutorialesFrag" />
+        <action
+            android:id="@+id/action_ajustesFrag_to_acercaDeFrag"
+            app:destination="@id/acercaDeFrag" />
+    </fragment>
     <fragment
         android:id="@+id/plantaEspFrag"
         android:name="mx.itesm.bcr.plantifybcr.PlantaEspFrag"
