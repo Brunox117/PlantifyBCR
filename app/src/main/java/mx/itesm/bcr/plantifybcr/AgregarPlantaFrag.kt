@@ -28,6 +28,8 @@ import android.content.DialogInterface
 import android.os.Handler
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import mx.itesm.bcr.plantifybcr.databinding.ActivityLoginAppBinding
 import mx.itesm.bcr.plantifybcr.databinding.AgregarPlantaFragmentBinding
 
@@ -44,6 +46,7 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
     private var iluminacion = ""
     private var grupo = "Esta planta no pertenece a ningun grupo"
     private var hora = ""
+    private lateinit var mStorageRef: StorageReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,6 +69,10 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         binding.btnElegirHora.setOnClickListener {
             mostrarTimePicker()
         }
+        //PRUEBA SUBIR IMAGENES
+        binding.addImg.setOnClickListener {
+            //subirImagenAlaBaseDatos()
+        }
         binding.btnIluminacion.setOnClickListener {
             val builderSingle = AlertDialog.Builder(requireContext())
             builderSingle.setTitle("Iluminación")
@@ -80,6 +87,11 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
             builderSingle.show()
         }
         return root
+    }
+
+    private fun subirImagenAlaBaseDatos() {
+        mStorageRef = FirebaseStorage.getInstance().getReference()
+        //Intent intent = new Intent(Intent.ACTION_PICK)
     }
 
     private fun mostrarTimePicker() {

@@ -32,8 +32,8 @@ class agregarPlantaWiki : Fragment() {
         binding = AgregarPlantaWikiFragmentBinding.inflate(layoutInflater)
         val root: View = binding.root
         binding.btnAgregarWikiAdmin.setOnClickListener {
-            if(binding.etNombreAddWiki.toString() == "" || binding.etNombreCWiki.toString() == ""
-                || binding.etTipoClima.toString() == "" || binding.etUsos.toString() == "") {
+            if(binding.etNombreAddWiki.text.toString() == "" || binding.etNombreCWiki.text.toString() == ""
+                || binding.etTipoClima.text.toString() == "" || binding.etUsos.text.toString() == "") {
                 AlertDialog.Builder(requireContext()).apply {
                     setTitle("Faltan datos")
                     setMessage("Debes llenar cada casilla con la información correspondiente.")

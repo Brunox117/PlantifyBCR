@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_HomeFrag_to_infoUsuarioFrag"
             app:destination="@id/infoUsuarioFrag" />
+        <action
+            android:id="@+id/action_HomeFrag_to_agregarPlantaFrag"
+            app:destination="@id/agregarPlantaFrag" />
     </fragment>
 
     <fragment

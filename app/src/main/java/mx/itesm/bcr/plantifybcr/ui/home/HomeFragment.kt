@@ -20,6 +20,7 @@ import com.google.firebase.ktx.Firebase
 import mx.itesm.bcr.plantifybcr.*
 import mx.itesm.bcr.plantifybcr.databinding.FragmentHomeBinding
 import mx.itesm.bcr.plantifybcr.databinding.InfoUsuarioFragmentBinding
+import mx.itesm.bcr.plantifybcr.ui.dashboard.DashboardFragmentDirections
 import mx.itesm.bcr.plantifybcr.viewmodels.Grupo
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaMenuAdaptador
 
@@ -69,7 +70,14 @@ class HomeFragment : Fragment(), ListenerRecycler {
         adapterGH = carouselAdaptador()
         recyclerViewGH?.layoutManager = LinearLayoutManager(this.requireContext(),LinearLayoutManager.HORIZONTAL,false)
         recyclerViewGH?.adapter = adapterGH
-
+        //DESABILITAMOS EL RECYCLER VIEW PARA VERIFICAR SI HAY PLANTAS
+        binding.rvPlantaHome.visibility = View.GONE
+        binding.btnAgregarPlantaHome.visibility = View.GONE
+        binding.tvAgregarPlanta.visibility = View.GONE
+        binding.btnAgregarPlantaHome.setOnClickListener {
+            val accion = HomeFragmentDirections.actionHomeFragToAgregarPlantaFrag()
+            findNavController().navigate(accion)
+        }
         return root
     }
 
@@ -105,6 +113,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
         referenciaPlantas.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    binding.rvPlantaHome.visibility = View.VISIBLE
                     var arrPlantas = mutableListOf<Planta>()
                 for(planta in snapshot.children){
                     var d:Map<String,String> = planta.value as Map<String, String>
@@ -115,7 +124,10 @@ class HomeFragment : Fragment(), ListenerRecycler {
                 }
                 adapterPH.setData(arrPlantas.toTypedArray())
                 adapterPH.notifyDataSetChanged()
-                }
+                }else{
+                binding.btnAgregarPlantaHome.visibility = View.VISIBLE
+                binding.tvAgregarPlanta.visibility = View.VISIBLE
+            }
             }
             override fun onCancelled(error: DatabaseError) {
                 print("Error: $error")
