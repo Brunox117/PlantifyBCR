@@ -28,6 +28,9 @@ import android.content.DialogInterface
 import android.os.Handler
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import mx.itesm.bcr.plantifybcr.databinding.ActivityLoginAppBinding
@@ -43,8 +46,9 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
     private lateinit var binding: AgregarPlantaFragmentBinding
     private var listener: OnFragmentActionsListener? = null
     private val opcionesIluminacion = arrayOf("Natural","Artificial","Ninguna")
+    private var opcionesGrupo = arrayListOf<String>()
     private var iluminacion = ""
-    private var grupo = "Esta planta no pertenece a ningun grupo"
+    private var grupo = ""
     private var hora = ""
     private lateinit var mStorageRef: StorageReference
 
@@ -52,6 +56,7 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        opcionesGrupo.add("Ninguno")
         binding = AgregarPlantaFragmentBinding.inflate(layoutInflater)
         val root: View = binding.root
         binding.btnAgregarPlanta.setOnClickListener {
@@ -86,6 +91,19 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
             }
             builderSingle.show()
         }
+        binding.btnAgregarGrupoAGF.setOnClickListener {
+            val builderSingle  = AlertDialog.Builder(requireContext())
+            builderSingle.setTitle("Grupos")
+            builderSingle.setPositiveButton(getString(android.R.string.ok)){
+                    dialog,_ ->
+                dialog.dismiss()
+            }
+            builderSingle.setSingleChoiceItems(opcionesGrupo.toTypedArray(),opcionesGrupo.size){
+                    dialog,which ->
+                grupo = opcionesGrupo[which]
+            }
+            builderSingle.show()
+        }
         return root
     }
 
@@ -108,13 +126,14 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         val nombre = binding.tvNombre.text.toString()
         val horaRiego = hora
         val planta = Planta(nombre,horaRiego,iluminacion,grupo)
-        if(grupo == "Esta planta no pertenece a ningun grupo"){
-            println("No agregamos la planta a ningun grupo")
+        if(grupo == ""){
+            grupo == "ninguno"
         }
         val referencia = baseDatos.getReference("/Usuarios/$_tokken/Plantas/$nombre")
         referencia.setValue(planta)
         hora = ""
         iluminacion = ""
+        grupo = ""
         binding.tvNombre.text.clear()
         AlertDialog.Builder(requireContext()).apply {
             setTitle("La planta se agrego correctamente!")
@@ -128,8 +147,27 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
             //Obtenemos el tokken que paso la activity login a main activity
             viewModel.tokken.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
                 _tokken = it.toString()
+                configurarGrupos()
             })
-        }, 250)
+        }, 100)
+    }
+
+    private fun configurarGrupos() {
+        val baseDatos = Firebase.database
+        val referenciaGrupos = baseDatos.getReference("/Usuarios/$_tokken/Grupos")
+        referenciaGrupos.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for(grupo in snapshot.children){
+                    var grupoOpc = grupo.child("/nombre").value
+                    opcionesGrupo.add(grupoOpc.toString())
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                print("Error: $error")
+            }
+
+        })
     }
 
     override fun onAttach(context: Context) {

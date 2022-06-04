@@ -83,6 +83,13 @@
                 android:text="ELEGIR ILUMINACION" />
 
             <Button
+                android:id="@+id/btnAgregarGrupoAGF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Agregar a un grupo" />
+
+            <Button
                 android:id="@+id/btnAgregarPlanta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
