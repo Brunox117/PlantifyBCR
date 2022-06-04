@@ -22,10 +22,16 @@ import mx.itesm.bcr.plantifybcr.ui.home.HomeViewModel
 import mx.itesm.bcr.plantifybcr.ui.notifications.NotificationsFragment
 import android.Manifest.permission.CAMERA
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Handler
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import com.google.firebase.database.DataSnapshot
@@ -38,6 +44,7 @@ import mx.itesm.bcr.plantifybcr.databinding.AgregarPlantaFragmentBinding
 
 import mx.itesm.bcr.plantifybcr.viewmodels.AgregarPlantaVM
 import java.util.*
+import java.util.jar.Manifest
 
 class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
     private val viewModel: HomeViewModel by activityViewModels()
@@ -76,7 +83,7 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         }
         //PRUEBA SUBIR IMAGENES
         binding.addImg.setOnClickListener {
-            //subirImagenAlaBaseDatos()
+            pedirPermisos()
         }
         binding.btnIluminacion.setOnClickListener {
             val builderSingle = AlertDialog.Builder(requireContext())
@@ -105,6 +112,41 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
             builderSingle.show()
         }
         return root
+    }
+
+    private fun pedirPermisos() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            when{
+                ContextCompat.checkSelfPermission(requireContext(),android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_GRANTED -> {
+                            elegirFotodeGaleria()
+                        }else -> requestPermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+        }else {
+            elegirFotodeGaleria()
+        }
+    }
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ){
+      if(it == true){
+          elegirFotodeGaleria()
+      }else{
+          Toast.makeText(requireContext(),"Debes dar permiso a la aplicacion",Toast.LENGTH_SHORT).show()
+    }
+    }
+    private val startForActivityGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){
+        if(it.resultCode == Activity.RESULT_OK){
+            val data = it.data?.data
+            binding.ivImg.setImageURI(data)
+        }
+    }
+    private fun elegirFotodeGaleria() {
+        val intent = Intent(Intent(Intent.ACTION_GET_CONTENT))
+        intent.type = "image/*"
+        startForActivityGallery.launch(intent)
     }
 
     private fun subirImagenAlaBaseDatos() {
