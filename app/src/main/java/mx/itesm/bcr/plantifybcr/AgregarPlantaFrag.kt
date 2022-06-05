@@ -29,6 +29,7 @@ import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Handler
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
@@ -45,6 +46,8 @@ import mx.itesm.bcr.plantifybcr.databinding.AgregarPlantaFragmentBinding
 import mx.itesm.bcr.plantifybcr.viewmodels.AgregarPlantaVM
 import java.util.*
 import java.util.jar.Manifest
+import kotlin.collections.HashMap
+import kotlin.reflect.typeOf
 
 class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
     private val viewModel: HomeViewModel by activityViewModels()
@@ -56,8 +59,8 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
     private var opcionesGrupo = arrayListOf<String>()
     private var iluminacion = ""
     private var grupo = ""
+    private var nombrePlanta = ""
     private var hora = ""
-    private lateinit var mStorageRef: StorageReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -141,6 +144,30 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         if(it.resultCode == Activity.RESULT_OK){
             val data = it.data?.data
             binding.ivImg.setImageURI(data)
+
+            val database = Firebase.database
+            val myRef = database.getReference("/Usuarios/$_tokken/imagenesPlantas/")
+            val FileUri = data
+            val Folder: StorageReference = FirebaseStorage.getInstance().getReference().child("/Usuarios/$_tokken/imagenesPlantas/")
+            val file_name: StorageReference = Folder.child("imagen$nombrePlanta" + FileUri!!.lastPathSegment)
+            file_name.putFile(FileUri).addOnSuccessListener { taskSnapshot ->
+                file_name.downloadUrl.addOnSuccessListener { uri->
+                   //15:37
+                    val hashMap = HashMap<String,String>()
+                    hashMap["url$nombrePlanta"] = java.lang.String.valueOf(uri)
+                    myRef.setValue(hashMap)
+                    Log.d("Mensaje","se subio correctamente")
+                    nombrePlanta = ""
+                    hora = ""
+                    iluminacion = ""
+                    grupo = ""
+                    binding.tvNombre.text.clear()
+                    AlertDialog.Builder(requireContext()).apply {
+                        setTitle("La planta se agrego correctamente!")
+                        setPositiveButton("Ok",null)
+                    }.show()
+                }
+            }
         }
     }
     private fun elegirFotodeGaleria() {
@@ -149,10 +176,6 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         startForActivityGallery.launch(intent)
     }
 
-    private fun subirImagenAlaBaseDatos() {
-        mStorageRef = FirebaseStorage.getInstance().getReference()
-        //Intent intent = new Intent(Intent.ACTION_PICK)
-    }
 
     private fun mostrarTimePicker() {
         val timePicker = TimePIcker{time-> onTimeSelected(time)}
@@ -165,14 +188,17 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
 
     private fun agregarPlanta() {
         val baseDatos = Firebase.database
-        val nombre = binding.tvNombre.text.toString()
+        nombrePlanta = binding.tvNombre.text.toString()
         val horaRiego = hora
-        val planta = Planta(nombre,horaRiego,iluminacion,grupo)
+        val planta = Planta(nombrePlanta,horaRiego,iluminacion,grupo)
         if(grupo == ""){
             grupo == "ninguno"
         }
-        val referencia = baseDatos.getReference("/Usuarios/$_tokken/Plantas/$nombre")
+        val referencia = baseDatos.getReference("/Usuarios/$_tokken/Plantas/$nombrePlanta")
         referencia.setValue(planta)
+        pedirPermisos()
+        /*
+        nombrePlanta = ""
         hora = ""
         iluminacion = ""
         grupo = ""
@@ -181,6 +207,7 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
             setTitle("La planta se agrego correctamente!")
             setPositiveButton("Ok",null)
         }.show()
+         */
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
