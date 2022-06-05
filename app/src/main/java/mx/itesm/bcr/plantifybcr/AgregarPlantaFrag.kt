@@ -152,7 +152,7 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
             val file_name: StorageReference = Folder.child("imagen$nombrePlanta" + FileUri!!.lastPathSegment)
             file_name.putFile(FileUri).addOnSuccessListener { taskSnapshot ->
                 file_name.downloadUrl.addOnSuccessListener { uri->
-                   //15:37
+
                     val hashMap = HashMap<String,String>()
                     hashMap["url$nombrePlanta"] = java.lang.String.valueOf(uri)
                     myRef.setValue(hashMap)
