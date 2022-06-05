@@ -3,6 +3,7 @@ package mx.itesm.bcr.plantifybcr
 import android.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -58,6 +59,17 @@ class PlantaEspFrag : Fragment() {
                 }.show()
                 val accion = PlantaEspFragDirections.actionPlantaEspFragToHomeFrag()
                 findNavController().navigate(accion)
+            }
+            override fun onCancelled(error: DatabaseError) {
+                print("Error: $error")
+            }
+        })
+        val referenciaImgEliminar = baseDatos.getReference("/Usuarios/$tokken/imagenesPlantas/$nombrePlanta")
+        referenciaImgEliminar.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    snapshot.ref.removeValue()
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

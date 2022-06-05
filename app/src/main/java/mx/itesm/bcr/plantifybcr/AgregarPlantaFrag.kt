@@ -86,6 +86,7 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         }
         //PRUEBA SUBIR IMAGENES
         binding.addImg.setOnClickListener {
+            nombrePlanta = binding.tvNombre.text.toString()
             pedirPermisos()
         }
         binding.btnIluminacion.setOnClickListener {
@@ -143,21 +144,18 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
     ){
         if(it.resultCode == Activity.RESULT_OK){
             val data = it.data?.data
-            binding.ivImg.setImageURI(data)
-
+            //binding.ivImg.setImageURI(data)
             val database = Firebase.database
-            val myRef = database.getReference("/Usuarios/$_tokken/imagenesPlantas/")
+            val myRef = database.getReference("/Usuarios/$_tokken/imagenesPlantas/$nombrePlanta")
             val FileUri = data
-            val Folder: StorageReference = FirebaseStorage.getInstance().getReference().child("/Usuarios/$_tokken/imagenesPlantas/")
+            val Folder: StorageReference = FirebaseStorage.getInstance().getReference().child("/Usuarios/$_tokken/imagenesPlantas/$nombrePlanta")
             val file_name: StorageReference = Folder.child("imagen$nombrePlanta" + FileUri!!.lastPathSegment)
             file_name.putFile(FileUri).addOnSuccessListener { taskSnapshot ->
                 file_name.downloadUrl.addOnSuccessListener { uri->
-
                     val hashMap = HashMap<String,String>()
-                    hashMap["url$nombrePlanta"] = java.lang.String.valueOf(uri)
+                    hashMap["url"] = java.lang.String.valueOf(uri)
                     myRef.setValue(hashMap)
-                    Log.d("Mensaje","se subio correctamente")
-                    nombrePlanta = ""
+                    /*nombrePlanta = ""
                     hora = ""
                     iluminacion = ""
                     grupo = ""
@@ -166,6 +164,7 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
                         setTitle("La planta se agrego correctamente!")
                         setPositiveButton("Ok",null)
                     }.show()
+                     */
                 }
             }
         }
@@ -196,8 +195,7 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         }
         val referencia = baseDatos.getReference("/Usuarios/$_tokken/Plantas/$nombrePlanta")
         referencia.setValue(planta)
-        pedirPermisos()
-        /*
+        //pedirPermisos()
         nombrePlanta = ""
         hora = ""
         iluminacion = ""
@@ -207,7 +205,6 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
             setTitle("La planta se agrego correctamente!")
             setPositiveButton("Ok",null)
         }.show()
-         */
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
