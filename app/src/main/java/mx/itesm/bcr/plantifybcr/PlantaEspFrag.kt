@@ -114,7 +114,7 @@ class PlantaEspFrag : Fragment() {
                     val url = snapshot.child("url").value
                     Glide.with(requireContext()).load(url).into(binding.imgPlanta)
                 }else{
-                    val url = "gs://plantifybcr-71577.appspot.com/plant1.png"
+                    val url = "https://firebasestorage.googleapis.com/v0/b/plantifybcr-71577.appspot.com/o/Usuarios%2F33I63MXlbpgM6JWcgcKVkLmnjam2%2FimagenesPlantas%2FDEFAULT%2FimagenDEFAULTmsf%3A66?alt=media&token=c2397cbd-f6eb-492f-bfe5-7369c45057ac"
                     Glide.with(requireContext()).load(url).into(binding.imgPlanta)
                 }
             }
