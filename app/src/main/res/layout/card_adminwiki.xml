@@ -51,12 +51,12 @@
 
         <ImageView
             android:id="@+id/ivBorrar"
-            android:layout_width="wrap_content"
+            android:layout_width="28dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvNombrePlantaWikiA"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="338dp"
-            android:layout_marginTop="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="72dp"
+            android:layout_toEndOf="@+id/ivEditar"
             card_view:srcCompat="@android:drawable/ic_menu_delete" />
 
         <ImageView
@@ -66,8 +66,8 @@
             android:layout_below="@id/cv_ivPlantaWikiA"
 
             android:layout_alignParentStart="true"
-            android:layout_marginStart="297dp"
-            android:layout_marginTop="-7dp"
+            android:layout_marginStart="254dp"
+            android:layout_marginTop="-9dp"
             card_view:srcCompat="@android:drawable/ic_menu_edit" />
 
 

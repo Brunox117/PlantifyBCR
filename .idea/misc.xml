@@ -27,7 +27,9 @@
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/agregar_grupo_fragment.xml" value="0.3625" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/agregar_planta_fragment.xml" value="0.536" />
+        <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/agregar_planta_wiki_fragment.xml" value="0.3569230769230769" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/ajustesFrag.xml" value="0.3625" />
+        <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/card_adminwiki.xml" value="0.5" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/fragment_dashboard.xml" value="0.3625" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/fragment_home.xml" value="0.3625" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/fragment_notifications.xml" value="0.35833333333333334" />
@@ -37,6 +39,7 @@
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/planta_esp_fragment.xml" value="0.25" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/sensores_fragment.xml" value="0.3625" />
         <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/tutoriales_fragment.xml" value="0.3625" />
+        <entry key="..\:/Users/omarj/Documents/TEC/PlantifyBCR/app/src/main/res/layout/wiki_admin_fragment.xml" value="0.3625" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/drawable/bottom_navigation_background.xml" value="0.1485" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1115" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/drawable/ic_plant_iconblack.xml" value="0.1115" />
@@ -46,9 +49,9 @@
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/agregar_planta_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/agregar_planta_wiki_fragment.xml" value="0.25" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/agregar_planta_wiki_fragment_fragment.xml" value="0.25" />
-        <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/card_adminwiki.xml" value="0.25" />
+        <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/card_adminwiki.xml" value="0.4" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/card_grupoesp.xml" value="0.19895833333333332" />
-        <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/card_grupos.xml" value="0.33" />
+        <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/card_grupos.xml" value="0.6" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/card_planta.xml" value="0.18" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/card_plantawiki.xml" value="0.264" />
         <entry key="..\:/Users/tarin/Documents/PlantifyBCR/app/src/main/res/layout/carrousel_card.xml" value="0.25" />
