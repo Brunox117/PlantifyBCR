@@ -78,13 +78,33 @@ class WikiAdmin : Fragment(),ListenerRE {
     }
 
     override fun itemClickedEditar(position: Int) {
-        val plantaWikiA = adaptador.titles[position]
+        val plantaWikiA = adaptador.titles2[position]
         println("Click en editar de $plantaWikiA")
     }
 
     override fun itemClickedBorrar(position: Int) {
-        val plantaWikiA = adaptador.titles[position]
-        println("Click en borrar de $plantaWikiA")
+        val plantaWikiA = adaptador.titles2[position]
+        eliminarPlanta(plantaWikiA)
+    }
+
+    private fun eliminarPlanta(nombrePlanta: String) {
+        val baseDatos = Firebase.database
+        val referenciaPlantaE = baseDatos.getReference("/Wiki/$nombrePlanta")
+        referenciaPlantaE.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    snapshot.ref.removeValue()
+                    val accion = WikiAdminDirections.actionWikiAdminSelf()
+                    findNavController().navigate(accion)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                print("Error: $error")
+            }
+
+        })
+
     }
 
 }

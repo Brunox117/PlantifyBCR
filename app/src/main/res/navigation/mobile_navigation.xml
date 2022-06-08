@@ -135,6 +135,9 @@
         <action
             android:id="@+id/action_wikiAdmin_to_agregarPlantaWiki"
             app:destination="@id/agregarPlantaWiki" />
+        <action
+            android:id="@+id/action_wikiAdmin_self"
+            app:destination="@id/wikiAdmin" />
     </fragment>
     <fragment
         android:id="@+id/agregarPlantaWiki"
