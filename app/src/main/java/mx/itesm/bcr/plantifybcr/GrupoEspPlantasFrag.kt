@@ -18,14 +18,16 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import mx.itesm.bcr.plantifybcr.databinding.GrupoEspPlantasFragmentBinding
 import mx.itesm.bcr.plantifybcr.ui.home.HomeViewModel
+import mx.itesm.bcr.plantifybcr.viewmodels.AgregarPlantaVM
 import mx.itesm.bcr.plantifybcr.viewmodels.GrupoEspPlantasVM
+import mx.itesm.bcr.plantifybcr.viewmodels.plantaGrupoEspAdaptador
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaWikiAdaptador
 
 class GrupoEspPlantasFrag : Fragment() {
 
     private val args: GrupoEspPlantasFragArgs by navArgs()
     private var _binding: GrupoEspPlantasFragmentBinding? = null
-    private lateinit var adapter: plantaWikiAdaptador
+    private lateinit var adapter: plantaGrupoEspAdaptador
     private val binding get() = _binding!!
     private val hviewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""
@@ -41,7 +43,7 @@ class GrupoEspPlantasFrag : Fragment() {
 
         //RecyclerView de las plantas de un grupo en específico.
         val recyclerView = _binding?.rvPlantasGrupoEsp
-        adapter = plantaWikiAdaptador()
+        adapter = plantaGrupoEspAdaptador()
         recyclerView?.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView?.adapter = adapter
         return root
@@ -57,7 +59,6 @@ class GrupoEspPlantasFrag : Fragment() {
                 })
                 descargarDatosNube()
             },100)
-
     }
 
     private fun descargarDatosNube() {
@@ -72,6 +73,28 @@ class GrupoEspPlantasFrag : Fragment() {
                 print("Error: $error")
             }
 
+        })
+
+        val referenciaPlantas = baseDatos.getReference("/Usuarios/$_tokken/Plantas")
+        referenciaPlantas.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    var arrPlantas = mutableListOf<Planta>()
+                    for(planta in snapshot.children){
+                        var d:Map<String,String> = planta.value as Map<String, String>
+                        val plantaArr = planta.getValue(Planta::class.java)
+                        if (plantaArr != null && plantaArr.grupo == args.nombreGrupo) {
+                            arrPlantas.add(plantaArr)
+                        }
+                    }
+                    adapter.setData(arrPlantas.toTypedArray())
+                    adapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                print("Error: $error")
+            }
         })
     }
 

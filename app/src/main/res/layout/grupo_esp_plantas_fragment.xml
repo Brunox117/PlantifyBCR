@@ -16,7 +16,7 @@
         android:fontFamily="@font/bree_serif"
         android:text="Grupo de Plantas"
         android:textColor="@color/verde4"
-        android:textSize="24sp"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

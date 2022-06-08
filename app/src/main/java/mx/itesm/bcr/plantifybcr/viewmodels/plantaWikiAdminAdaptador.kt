@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import mx.itesm.bcr.plantifybcr.ListenerRAdmin
+import mx.itesm.bcr.plantifybcr.ListenerRE
 import mx.itesm.bcr.plantifybcr.PlantaWiki
 import mx.itesm.bcr.plantifybcr.R
 
@@ -16,7 +16,7 @@ class plantaWikiAdminAdaptador: RecyclerView.Adapter<plantaWikiAdminAdaptador.Vi
     val titles= arrayOf("Cactus","Lavanda", "Vainilla")
     val images = intArrayOf(R.drawable.plant1, R.drawable.plant2, R.drawable.plant3)
     var titles2 = mutableListOf<String>()
-    var listenerAdmin: ListenerRAdmin? = null
+    var listenerAdmin: ListenerRE? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): plantaWikiAdminAdaptador.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_adminwiki,parent,false)
         return ViewHolder(v)

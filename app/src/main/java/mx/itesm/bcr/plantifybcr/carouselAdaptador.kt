@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class carouselAdaptador(): RecyclerView.Adapter<carouselAdaptador.ViewHolder>() {
 
-    val titles = arrayOf("Jardín","Recámara","Sala de estar")
+    val titles = arrayOf("Casa","Recámara","Sala de estar")
     val images = intArrayOf(R.drawable.garden,R.drawable.bedroom,R.drawable.livingroom)
     var listener: ListenerRecycler? = null
 
