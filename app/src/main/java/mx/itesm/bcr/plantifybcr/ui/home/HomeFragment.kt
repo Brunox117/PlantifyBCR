@@ -22,6 +22,7 @@ import mx.itesm.bcr.plantifybcr.databinding.FragmentHomeBinding
 import mx.itesm.bcr.plantifybcr.databinding.InfoUsuarioFragmentBinding
 import mx.itesm.bcr.plantifybcr.ui.dashboard.DashboardFragmentDirections
 import mx.itesm.bcr.plantifybcr.viewmodels.Grupo
+import mx.itesm.bcr.plantifybcr.viewmodels.plantaGrupoEspAdaptador
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaMenuAdaptador
 
 
@@ -31,8 +32,10 @@ class HomeFragment : Fragment(), ListenerRecycler {
     private lateinit var adapterPH: plantaMenuAdaptador
     private lateinit var adapterGH: carouselAdaptador
     private lateinit var Usuario: InfoUsuarioFrag
+    private lateinit var  adapterGEH: plantaGrupoEspAdaptador
     private val viewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""
+    private var arrPlantas = mutableListOf<Planta>()
 
     //
     // This property is only valid between onCreateView and
@@ -68,8 +71,13 @@ class HomeFragment : Fragment(), ListenerRecycler {
         //RecyclerView de los grupos - recyclerViewGrupoHome
         val recyclerViewGH = _binding?.rvGrupoHome
         adapterGH = carouselAdaptador()
+
+        //Inicializamos el adaptador del grupo específico.
+        adapterGEH = plantaGrupoEspAdaptador()
+
         recyclerViewGH?.layoutManager = LinearLayoutManager(this.requireContext(),LinearLayoutManager.HORIZONTAL,false)
         recyclerViewGH?.adapter = adapterGH
+        adapterGH.listener = this
         //DESABILITAMOS EL RECYCLER VIEW PARA VERIFICAR SI HAY PLANTAS
         binding.rvPlantaHome.visibility = View.GONE
         binding.btnAgregarPlantaHome.visibility = View.GONE
@@ -114,7 +122,6 @@ class HomeFragment : Fragment(), ListenerRecycler {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     binding.rvPlantaHome.visibility = View.VISIBLE
-                    var arrPlantas = mutableListOf<Planta>()
                 for(planta in snapshot.children){
                     var d:Map<String,String> = planta.value as Map<String, String>
                     val plantaArr = planta.getValue(Planta::class.java)
@@ -122,8 +129,10 @@ class HomeFragment : Fragment(), ListenerRecycler {
                         arrPlantas.add(plantaArr)
                     }
                 }
+
                 adapterPH.setData(arrPlantas.toTypedArray())
                 adapterPH.notifyDataSetChanged()
+
                 }else{
                 binding.btnAgregarPlantaHome.visibility = View.VISIBLE
                 binding.tvAgregarPlanta.visibility = View.VISIBLE
@@ -168,6 +177,15 @@ class HomeFragment : Fragment(), ListenerRecycler {
 
     override fun itemClickedGrupo(position: Int) {
         val grupo = adapterGH.titles[position]
+        var arrPlant = mutableListOf<Planta>()
+        for (planta in arrPlantas){
+            if (grupo == planta.grupo){
+                arrPlant.add(planta)
+            }
+        }
+        adapterGEH.setData(arrPlant.toTypedArray())
+        adapterGEH.notifyDataSetChanged()
+        println("titulos: [${adapterGEH.titles}]")
         println("Click en $grupo")
         val accion = HomeFragmentDirections.actionHomeFragToGrupoEspPlantasFrag(grupo)
         findNavController().navigate(accion)

@@ -14,9 +14,6 @@
             android:id="@+id/action_HomeFrag_to_plantaEspFrag"
             app:destination="@id/plantaEspFrag" />
         <action
-            android:id="@+id/action_HomeFrag_to_gruposPlantasFrag"
-            app:destination="@id/gruposPlantasFrag" />
-        <action
             android:id="@+id/action_HomeFrag_to_grupoEspPlantasFrag"
             app:destination="@id/grupoEspPlantasFrag" />
         <action
@@ -54,6 +51,9 @@
         <action
             android:id="@+id/action_ajustesFrag_to_acercaDeFrag"
             app:destination="@id/acercaDeFrag" />
+        <action
+            android:id="@+id/action_ajustesFrag_to_gruposPlantasFrag"
+            app:destination="@id/gruposPlantasFrag" />
     </fragment>
     <fragment
         android:id="@+id/plantaEspFrag"
@@ -93,7 +93,11 @@
         android:id="@+id/gruposPlantasFrag"
         android:name="mx.itesm.bcr.plantifybcr.GruposPlantasFrag"
         android:label="grupos_plantas_fragment"
-        tools:layout="@layout/grupos_plantas_fragment" />
+        tools:layout="@layout/grupos_plantas_fragment" >
+        <action
+            android:id="@+id/action_gruposPlantasFrag_to_agregarGrupoFrag"
+            app:destination="@id/agregarGrupoFrag" />
+    </fragment>
     <fragment
         android:id="@+id/tutorialesFrag"
         android:name="mx.itesm.bcr.plantifybcr.TutorialesFrag"

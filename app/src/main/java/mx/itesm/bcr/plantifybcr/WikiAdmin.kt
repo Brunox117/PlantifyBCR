@@ -1,8 +1,6 @@
 package mx.itesm.bcr.plantifybcr
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +13,9 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import mx.itesm.bcr.plantifybcr.databinding.WikiAdminFragmentBinding
-import mx.itesm.bcr.plantifybcr.ui.home.HomeFragmentDirections
-import mx.itesm.bcr.plantifybcr.viewmodels.plantaWikiAdaptador
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaWikiAdminAdaptador
 
-class WikiAdmin : Fragment(),ListenerRAdmin {
+class WikiAdmin : Fragment(),ListenerRE {
     //Calidad
     private var _binding: WikiAdminFragmentBinding? = null
     private lateinit var adaptador: plantaWikiAdminAdaptador

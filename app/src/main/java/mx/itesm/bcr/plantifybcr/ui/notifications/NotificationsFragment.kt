@@ -31,6 +31,10 @@ class NotificationsFragment : Fragment() {
 
         _binding = FragmentNotificationsBinding.inflate(inflater)
         val root: View = binding.root
+        binding.btnGrupos.setOnClickListener {
+            val accion = NotificationsFragmentDirections.actionAjustesFragToGruposPlantasFrag()
+            findNavController().navigate(accion)
+        }
         binding.btnAcerca.setOnClickListener {
             val accion = NotificationsFragmentDirections.actionAjustesFragToAcercaDeFrag()
             findNavController().navigate(accion)
