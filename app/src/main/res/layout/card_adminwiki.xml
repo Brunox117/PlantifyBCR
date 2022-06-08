@@ -53,20 +53,21 @@
             android:id="@+id/ivBorrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="26dp"
-            android:layout_toEndOf="@+id/ivEditar"
+            android:layout_below="@id/tvNombrePlantaWikiA"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="338dp"
+            android:layout_marginTop="15dp"
             card_view:srcCompat="@android:drawable/ic_menu_delete" />
 
         <ImageView
             android:id="@+id/ivEditar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="70dp"
-            android:layout_marginTop="26dp"
-            android:layout_toEndOf="@+id/tvNombrePlantaWikiA"
+            android:layout_below="@id/cv_ivPlantaWikiA"
+
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="297dp"
+            android:layout_marginTop="-7dp"
             card_view:srcCompat="@android:drawable/ic_menu_edit" />
 
 
