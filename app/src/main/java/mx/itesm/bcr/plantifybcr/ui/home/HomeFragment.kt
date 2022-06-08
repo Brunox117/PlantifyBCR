@@ -35,7 +35,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
     private lateinit var  adapterGEH: plantaGrupoEspAdaptador
     private val viewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""
-    private var arrPlantas = mutableListOf<Planta>()
+
 
     //
     // This property is only valid between onCreateView and
@@ -121,6 +121,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
         referenciaPlantas.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    var arrPlantas = mutableListOf<Planta>()
                     binding.rvPlantaHome.visibility = View.VISIBLE
                 for(planta in snapshot.children){
                     var d:Map<String,String> = planta.value as Map<String, String>
@@ -129,10 +130,8 @@ class HomeFragment : Fragment(), ListenerRecycler {
                         arrPlantas.add(plantaArr)
                     }
                 }
-
                 adapterPH.setData(arrPlantas.toTypedArray())
                 adapterPH.notifyDataSetChanged()
-
                 }else{
                 binding.btnAgregarPlantaHome.visibility = View.VISIBLE
                 binding.tvAgregarPlanta.visibility = View.VISIBLE
@@ -177,7 +176,7 @@ class HomeFragment : Fragment(), ListenerRecycler {
 
     override fun itemClickedGrupo(position: Int) {
         val grupo = adapterGH.titles[position]
-        var arrPlant = mutableListOf<Planta>()
+        /*var arrPlant = mutableListOf<Planta>()
         for (planta in arrPlantas){
             if (grupo == planta.grupo){
                 arrPlant.add(planta)
@@ -186,10 +185,9 @@ class HomeFragment : Fragment(), ListenerRecycler {
         adapterGEH.setData(arrPlant.toTypedArray())
         adapterGEH.notifyDataSetChanged()
         println("titulos: [${adapterGEH.titles}]")
-        println("Click en $grupo")
+        println("Click en $grupo")*/
         val accion = HomeFragmentDirections.actionHomeFragToGrupoEspPlantasFrag(grupo)
         findNavController().navigate(accion)
-
     }
     override fun onDestroyView() {
         super.onDestroyView()
