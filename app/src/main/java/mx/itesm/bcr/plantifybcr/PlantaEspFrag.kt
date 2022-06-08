@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -97,6 +98,20 @@ class PlantaEspFrag : Fragment() {
                 binding.tvNombrePlanta.text = nombreP.toString()
                 var tipoIluminacion = snapshot.child("/iluminacion").value
                 binding.tvIluminacionPlantaEsp.text = tipoIluminacion.toString()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                print("Error: $error")
+            }
+
+        })
+        val referenciaImagenPlanta = baseDatos.getReference("/Usuarios/$tokken/imagenesPlantas/$nombrePlanta")
+        referenciaImagenPlanta.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    val url = snapshot.child("url").value
+                    Glide.with(requireContext()).load(url).into(binding.imgPlanta)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
