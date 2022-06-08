@@ -97,7 +97,9 @@ class PlantaEspFrag : Fragment() {
                 var nombreP = snapshot.child("/nombre").value
                 binding.tvNombrePlanta.text = nombreP.toString()
                 var tipoIluminacion = snapshot.child("/iluminacion").value
-                binding.tvIluminacionPlantaEsp.text = tipoIluminacion.toString()
+                binding.tvIluminacionPlantaEsp.text = "Iluminación: ${tipoIluminacion.toString()}"
+                var horaRiego = snapshot.child("/hora").value
+                binding.tvHoraRiego.text = "Hora de riego: ${horaRiego.toString()}"
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -110,6 +112,9 @@ class PlantaEspFrag : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     val url = snapshot.child("url").value
+                    Glide.with(requireContext()).load(url).into(binding.imgPlanta)
+                }else{
+                    val url = "gs://plantifybcr-71577.appspot.com/plant1.png"
                     Glide.with(requireContext()).load(url).into(binding.imgPlanta)
                 }
             }
