@@ -1,12 +1,19 @@
 package mx.itesm.bcr.plantifybcr
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
@@ -14,6 +21,8 @@ import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import mx.itesm.bcr.plantifybcr.databinding.AgregarPlantaWikiFragmentBinding
 import mx.itesm.bcr.plantifybcr.viewmodels.AgregarPlantaWikiVM
 
@@ -67,7 +76,73 @@ class agregarPlantaWiki : Fragment() {
                 }
             }
         }
+        binding.btnAgregarImgWiki.setOnClickListener {
+            if(args.nombrePlanta != null){
+                nombreC = args.nombrePlanta.toString()
+                pedirPermisos()
+            }else {
+                nombreC = binding.etNombreCWiki.text.toString()
+                pedirPermisos()
+            }
+        }
         return root
+    }
+
+    private fun pedirPermisos() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            when{
+                ContextCompat.checkSelfPermission(requireContext(),android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_GRANTED -> {
+                    elegirFotodeGaleria()
+                }else -> requestPermissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+        }else {
+            elegirFotodeGaleria()
+        }
+    }
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ){
+        if(it == true){
+            elegirFotodeGaleria()
+        }else{
+            Toast.makeText(requireContext(),"Debes dar permiso a la aplicacion", Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun elegirFotodeGaleria() {
+        val intent = Intent(Intent(Intent.ACTION_GET_CONTENT))
+        intent.type = "image/*"
+        startForActivityGallery.launch(intent)
+    }
+    private val startForActivityGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){
+        if(it.resultCode == Activity.RESULT_OK){
+            val data = it.data?.data
+            //binding.ivImg.setImageURI(data)
+            val database = Firebase.database
+            val myRef = database.getReference("/imagenesWiki/$nombreC")
+            val FileUri = data
+            val Folder: StorageReference = FirebaseStorage.getInstance().getReference().child("/imagenesWiki/$nombreC")
+            val file_name: StorageReference = Folder.child("imagen$nombreC" + FileUri!!.lastPathSegment)
+            file_name.putFile(FileUri).addOnSuccessListener { taskSnapshot ->
+                file_name.downloadUrl.addOnSuccessListener { uri->
+                    val hashMap = HashMap<String,String>()
+                    hashMap["url"] = java.lang.String.valueOf(uri)
+                    myRef.setValue(hashMap)
+                    /*nombrePlanta = ""
+                    hora = ""
+                    iluminacion = ""
+                    grupo = ""
+                    binding.tvNombre.text.clear()
+                    AlertDialog.Builder(requireContext()).apply {
+                        setTitle("La planta se agrego correctamente!")
+                        setPositiveButton("Ok",null)
+                    }.show()
+                     */
+                }
+            }
+        }
     }
 
     private fun agregarWiki2() {

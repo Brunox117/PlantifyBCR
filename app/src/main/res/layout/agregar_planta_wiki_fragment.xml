@@ -144,6 +144,12 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btnAgregarImgWiki"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Agregar Imagen" />
+
+            <Button
                 android:id="@+id/btnAgregarWikiAdmin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

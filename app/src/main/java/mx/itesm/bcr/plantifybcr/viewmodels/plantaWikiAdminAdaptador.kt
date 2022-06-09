@@ -36,7 +36,9 @@ class plantaWikiAdminAdaptador: RecyclerView.Adapter<plantaWikiAdminAdaptador.Vi
     }
     fun setData(arrPlantas: Array<PlantaWiki>){
         for(planta in arrPlantas){
-            titles2.add(planta.nombreC)
+            if(planta.nombreC != null || planta.nombreC != ""){
+                titles2.add(planta.nombreC)
+            }
         }
     }
     override fun getItemCount(): Int {
