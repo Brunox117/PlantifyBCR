@@ -71,7 +71,34 @@ class agregarPlantaWiki : Fragment() {
     }
 
     private fun agregarWiki2() {
-
+        val baseDatos = Firebase.database
+        nombre = binding.etNombreAddWiki.text.toString()
+        clima = binding.etTipoClima.text.toString()
+        usos = binding.etUsos.text.toString()
+        if(nombre != ""){
+            val referencia = baseDatos.getReference("Wiki/${args.nombrePlanta}/nombre")
+            referencia.setValue(nombre)
+        }
+        if(clima != ""){
+            val referencia = baseDatos.getReference("Wiki/${args.nombrePlanta}/clima")
+            referencia.setValue(clima)
+        }
+        if(usos != ""){
+            val referencia = baseDatos.getReference("Wiki/${args.nombrePlanta}/usos")
+            referencia.setValue(usos)
+        }
+        nombre = ""
+        nombreC = ""
+        clima = ""
+        usos = ""
+        binding.etNombreAddWiki.text.clear()
+        binding.etNombreCWiki.text.clear()
+        binding.etTipoClima.text.clear()
+        binding.etUsos.text.clear()
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle("La planta se edito correctamente!")
+            setPositiveButton("Ok",null)
+        }.show()
     }
 
     private fun agregarWiki() {
