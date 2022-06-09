@@ -24,13 +24,14 @@ import mx.itesm.bcr.plantifybcr.viewmodels.GruposAdaptador
 import mx.itesm.bcr.plantifybcr.viewmodels.GruposPlantasVM
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaGrupoEspAdaptador
 
-class GruposPlantasFrag : Fragment() {
+class GruposPlantasFrag : Fragment(), ListenerRE {
 
     private var _binding: GruposPlantasFragmentBinding? = null
     private lateinit var adapter: GruposAdaptador
     private val binding get() = _binding!!
     private val hviewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""
+
 
     private lateinit var viewModel: GruposPlantasVM
 
@@ -46,6 +47,7 @@ class GruposPlantasFrag : Fragment() {
         adapter = GruposAdaptador()
         recyclerView?.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView?.adapter = adapter
+        adapter.listener = this
 
         binding.ivAgregarGrupo.setOnClickListener {
             val action = GruposPlantasFragDirections.actionGruposPlantasFragToAgregarGrupoFrag()
@@ -88,6 +90,16 @@ class GruposPlantasFrag : Fragment() {
             }
 
         })
+    }
+
+    override fun itemClickedEditar(position: Int) {
+        val seleccion = adapter.titles[position]
+        println("Implementar editar en: $seleccion")
+    }
+
+    override fun itemClickedBorrar(position: Int) {
+        val seleccion = adapter.titles[position]
+        println("Implementar borrar en: $seleccion")
     }
 
 }
