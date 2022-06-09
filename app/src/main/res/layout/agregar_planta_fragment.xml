@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/ivImg"
-        android:layout_width="298dp"
-        android:layout_height="325dp"
+        android:layout_width="286dp"
+        android:layout_height="213dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/planta"
         app:layout_constraintEnd_toEndOf="parent"

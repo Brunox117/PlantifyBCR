@@ -30,7 +30,7 @@ class plantaWikiAdaptador(): RecyclerView.Adapter<plantaWikiAdaptador.ViewHolder
 
     fun setData(arrPlantas: Array<PlantaWiki>){
         for(planta in arrPlantas){
-            titles2.add(planta.nombre)
+            titles2.add(planta.nombreC)
         }
     }
 

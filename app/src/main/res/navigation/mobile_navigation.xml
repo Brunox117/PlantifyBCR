@@ -143,5 +143,10 @@
         android:id="@+id/agregarPlantaWiki"
         android:name="mx.itesm.bcr.plantifybcr.agregarPlantaWiki"
         android:label="agregar_planta_wiki_fragment"
-        tools:layout="@layout/agregar_planta_wiki_fragment" />
+        tools:layout="@layout/agregar_planta_wiki_fragment" >
+        <argument
+            android:name="nombrePlanta"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

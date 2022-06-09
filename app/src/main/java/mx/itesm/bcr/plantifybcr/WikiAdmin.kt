@@ -34,7 +34,7 @@ class WikiAdmin : Fragment(),ListenerRE {
         _binding = WikiAdminFragmentBinding.inflate(inflater,container,false)
         val root: View = binding.root
         binding.imAgregarP.setOnClickListener {
-            val accion = WikiAdminDirections.actionWikiAdminToAgregarPlantaWiki()
+            val accion = WikiAdminDirections.actionWikiAdminToAgregarPlantaWiki(null)
             findNavController().navigate(accion)
         }
         val recyclerView = _binding?.rvPlantaWikiA
@@ -79,7 +79,8 @@ class WikiAdmin : Fragment(),ListenerRE {
 
     override fun itemClickedEditar(position: Int) {
         val plantaWikiA = adaptador.titles2[position]
-        println("Click en editar de $plantaWikiA")
+        val accion = WikiAdminDirections.actionWikiAdminToAgregarPlantaWiki(plantaWikiA)
+        findNavController().navigate(accion)
     }
 
     override fun itemClickedBorrar(position: Int) {

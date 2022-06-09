@@ -19,128 +19,142 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/addImgWiki"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Agregar Imagen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivImgWiki"/>
-
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="364dp"
+        android:layout_height="399dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addImgWiki">
+        app:layout_constraintTop_toBottomOf="@+id/ivImgWiki">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addImgWiki">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvNombreAddWiki"
-                android:layout_width="109dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Nombres:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-            <EditText
-                android:id="@+id/etNombreAddWiki"
+                android:id="@+id/tvNombrePEditando"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_toEndOf="@id/tvNombreAddWiki"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-            <TextView
-                android:id="@+id/tvNombreC"
-                android:layout_width="110dp"
-                android:layout_height="55dp"
-                android:layout_below="@id/tvNombreAddWiki"
-                android:layout_marginTop="8dp"
-                android:text="Nombre Científico:"
+                android:fontFamily="@font/bree_serif"
+                android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-            <EditText
-                android:id="@+id/etNombreCWiki"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/lyCientifico"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvNombreC"
+                    android:layout_width="110dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/bree_serif"
+                    android:text="Nombre Científico:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <EditText
+                    android:id="@+id/etNombreCWiki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="57dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/etNombreAddWiki"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@id/tvNombreC"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvTipoClima"
-                android:layout_width="111dp"
+                <TextView
+                    android:id="@+id/tvNombreAddWiki"
+                    android:layout_width="109dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/bree_serif"
+                    android:text="Nombres:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <EditText
+                    android:id="@+id/etNombreAddWiki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvNombreC"
-                android:layout_marginTop="12dp"
-                android:text="Clima:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etTipoClima"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvTipoClima"
+                    android:layout_width="111dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/bree_serif"
+                    android:text="Clima:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <EditText
+                    android:id="@+id/etTipoClima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvUsos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/bree_serif"
+                    android:text="Usos:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <EditText
+                    android:id="@+id/etUsos"
+                    android:layout_width="168dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnAgregarWikiAdmin"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/etNombreCWiki"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@id/tvTipoClima"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:text="Agregar a la Wiki" />
 
-            <TextView
-                android:id="@+id/tvUsos"
-                android:layout_width="111dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvTipoClima"
-                android:layout_marginTop="32dp"
-                android:text="Usos:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="251dp" />
 
-            <EditText
-                android:id="@+id/etUsos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/etTipoClima"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@id/tvTipoClima"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-        </RelativeLayout>
-
-
+        </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/btnAgregarWikiAdmin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="Agregar a la Wiki"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="0.162" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
