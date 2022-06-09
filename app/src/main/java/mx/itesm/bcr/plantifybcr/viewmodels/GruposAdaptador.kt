@@ -3,6 +3,7 @@ package mx.itesm.bcr.plantifybcr.viewmodels
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import mx.itesm.bcr.plantifybcr.ListenerRE
@@ -35,15 +36,16 @@ class GruposAdaptador(): RecyclerView.Adapter<GruposAdaptador.ViewHolder>()
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         viewHolder.itemTitle.text = titles[i]
-        /* Falta por programar
+
         viewHolder.itemView.findViewById<ImageView>(R.id.ivBorrarGrupos).setOnClickListener {
             listener?.itemClickedBorrar(i)
         }
 
         viewHolder.itemView.findViewById<ImageView>(R.id.ivEditarGrupos).setOnClickListener {
             listener?.itemClickedEditar(i)
-        } */
+        }
     }
+
     override fun getItemCount(): Int {
         return titles.size
     }
