@@ -61,6 +61,8 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
     private var grupo = ""
     private var nombrePlanta = ""
     private var hora = ""
+    private var hashMap = HashMap<String,String>()
+    private var url = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -152,8 +154,8 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
             val file_name: StorageReference = Folder.child("imagen$nombrePlanta" + FileUri!!.lastPathSegment)
             file_name.putFile(FileUri).addOnSuccessListener { taskSnapshot ->
                 file_name.downloadUrl.addOnSuccessListener { uri->
-                    val hashMap = HashMap<String,String>()
                     hashMap["url"] = java.lang.String.valueOf(uri)
+                    url = hashMap["url"].toString()
                     myRef.setValue(hashMap)
                     /*nombrePlanta = ""
                     hora = ""
@@ -189,7 +191,7 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         val baseDatos = Firebase.database
         nombrePlanta = binding.tvNombre.text.toString()
         val horaRiego = hora
-        val planta = Planta(nombrePlanta,horaRiego,iluminacion,grupo)
+        val planta = Planta(nombrePlanta,horaRiego,iluminacion,grupo,url)
         if(grupo == ""){
             grupo == "ninguno"
         }
@@ -200,6 +202,7 @@ class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
         hora = ""
         iluminacion = ""
         grupo = ""
+        url = ""
         binding.tvNombre.text.clear()
         AlertDialog.Builder(requireContext()).apply {
             setTitle("La planta se agrego correctamente!")

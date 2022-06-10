@@ -100,17 +100,7 @@ class PlantaEspFrag : Fragment() {
                 binding.tvIluminacionPlantaEsp.text = "Iluminación: ${tipoIluminacion.toString()}"
                 var horaRiego = snapshot.child("/hora").value
                 binding.tvHoraRiego.text = "Hora de riego: ${horaRiego.toString()}"
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                print("Error: $error")
-            }
-
-        })
-        val referenciaImagenPlanta = baseDatos.getReference("/Usuarios/$tokken/imagenesPlantas/$nombrePlanta")
-        referenciaImagenPlanta.addListenerForSingleValueEvent(object: ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
+                if(snapshot.child("url").value.toString() != ""){
                     val url = snapshot.child("url").value
                     Glide.with(requireContext()).load(url).into(binding.imgPlanta)
                 }else{
@@ -124,6 +114,7 @@ class PlantaEspFrag : Fragment() {
             }
 
         })
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

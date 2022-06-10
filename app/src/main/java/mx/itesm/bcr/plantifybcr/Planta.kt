@@ -7,7 +7,8 @@ data class Planta(
     var nombre: String="",
     var hora: String="",
     var iluminacion: String="",
-    var grupo: String="Esta planta no pertenece a ningun grupo"
+    var grupo: String="Esta planta no pertenece a ningun grupo",
+    var url: String=""
     /*var foto: Int=0,
     var temperaturaIdeal: Int=0,
     var humedadIdeal: Int=0,

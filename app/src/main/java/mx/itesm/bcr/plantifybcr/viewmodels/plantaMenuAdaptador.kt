@@ -6,16 +6,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import mx.itesm.bcr.plantifybcr.ListenerRecycler
 import mx.itesm.bcr.plantifybcr.Planta
 import mx.itesm.bcr.plantifybcr.R
+import mx.itesm.bcr.plantifybcr.ui.home.HomeFragment
 import mx.itesm.bcr.plantifybcr.ui.home.HomeViewModel
+import kotlin.coroutines.coroutineContext
 
 class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder>() {
     var titles = arrayOf("Cactus","Hierbabuena","Menta")
     var percentages = arrayOf("12%","56%","88%")
     var images = intArrayOf(R.drawable.plant1,R.drawable.plant2,R.drawable.plant3)
     var titles2 = mutableListOf<String>()
+    var urls = mutableListOf<String>()
     var iluminacion = mutableListOf<String>()
     var listener: ListenerRecycler? = null
 
@@ -27,13 +31,23 @@ class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder
     fun setData(arrPlantas: Array<Planta>){
         for(planta in arrPlantas){
             titles2.add(planta.nombre)
+            urls.add(planta.url)
             iluminacion.add("Hora de riego: ${planta.hora}")
         }
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         viewHolder.itemTitle.text = titles2[i]
         viewHolder.itemPercentage.text = iluminacion[i]
-        viewHolder.itemImage.setImageResource(images[1])
+        //IMAGEN
+        val imgPlanta = viewHolder.itemView.findViewById<ImageView>(R.id.ivPlanta)
+        var url = urls[i]
+        if(url != ""){
+        Glide.with(viewHolder.itemView.context).load(url).into(imgPlanta)
+        }else{
+            url = "https://firebasestorage.googleapis.com/v0/b/plantifybcr-71577.appspot.com/o/Usuarios%2F33I63MXlbpgM6JWcgcKVkLmnjam2%2FimagenesPlantas%2FDEFAULT%2FimagenDEFAULTmsf%3A66?alt=media&token=c2397cbd-f6eb-492f-bfe5-7369c45057ac"
+            Glide.with(viewHolder.itemView.context).load(url).into(imgPlanta)
+        }
+        //viewHolder.itemImage.setImageResource(images[1])
         viewHolder.itemView.setOnClickListener {
             listener?.itemClickedPlanta(i)
         }
