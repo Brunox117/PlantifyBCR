@@ -105,7 +105,18 @@ class WikiAdmin : Fragment(),ListenerRE {
             }
 
         })
+        val referenciaImgEliminar = baseDatos.getReference("/imagenesWiki/$nombrePlanta")
+        referenciaImgEliminar.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    snapshot.ref.removeValue()
+                }
+            }
 
-    }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
 
-}
+        })
+
+}}

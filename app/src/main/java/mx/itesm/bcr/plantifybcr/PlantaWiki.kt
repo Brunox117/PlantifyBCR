@@ -4,5 +4,6 @@ data class PlantaWiki(
     var nombre: String="",
     var nombreC: String="",
     var clima: String="",
-    var usos: String=""
+    var usos: String="",
+    var url: String=""
 )

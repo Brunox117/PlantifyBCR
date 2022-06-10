@@ -36,6 +36,7 @@ class agregarPlantaWiki : Fragment() {
     private var nombreC = ""
     private var clima = ""
     private var usos = ""
+    private var url = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +51,7 @@ class agregarPlantaWiki : Fragment() {
             binding.tvNombrePEditando.visibility = View.VISIBLE
             binding.btnAgregarWikiAdmin.setOnClickListener {
                 if(binding.etNombreAddWiki.text.toString() == ""
-                    && binding.etTipoClima.text.toString() == "" && binding.etUsos.text.toString() == ""){
+                    && binding.etTipoClima.text.toString() == "" && binding.etUsos.text.toString() == "" && url==""){
                     AlertDialog.Builder(requireContext()).apply {
                         setTitle("No se edito nada")
                         setMessage("Debes cambiar al menos un campo")
@@ -129,6 +130,7 @@ class agregarPlantaWiki : Fragment() {
                 file_name.downloadUrl.addOnSuccessListener { uri->
                     val hashMap = HashMap<String,String>()
                     hashMap["url"] = java.lang.String.valueOf(uri)
+                    url = hashMap["url"].toString()
                     myRef.setValue(hashMap)
                     /*nombrePlanta = ""
                     hora = ""
@@ -162,10 +164,16 @@ class agregarPlantaWiki : Fragment() {
             val referencia = baseDatos.getReference("Wiki/${args.nombrePlanta}/usos")
             referencia.setValue(usos)
         }
+        if(url != ""){
+            val referencia = baseDatos.getReference("Wiki/${args.nombrePlanta}/url")
+            referencia.setValue(url)
+
+        }
         nombre = ""
         nombreC = ""
         clima = ""
         usos = ""
+        url = ""
         binding.etNombreAddWiki.text.clear()
         binding.etNombreCWiki.text.clear()
         binding.etTipoClima.text.clear()
@@ -182,13 +190,14 @@ class agregarPlantaWiki : Fragment() {
         nombreC = binding.etNombreCWiki.text.toString()
         clima = binding.etTipoClima.text.toString()
         usos = binding.etUsos.text.toString()
-        val plantaWiki = PlantaWiki(nombre,nombreC,clima, usos)
+        val plantaWiki = PlantaWiki(nombre,nombreC,clima, usos,url)
         val referencia = baseDatos.getReference("/Wiki/$nombreC")
         referencia.setValue(plantaWiki)
         nombre = ""
         nombreC = ""
         clima = ""
         usos = ""
+        url = ""
         binding.etNombreAddWiki.text.clear()
         binding.etNombreCWiki.text.clear()
         binding.etTipoClima.text.clear()
