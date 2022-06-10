@@ -48,7 +48,7 @@ import java.util.*
 import java.util.jar.Manifest
 import kotlin.collections.HashMap
 import kotlin.reflect.typeOf
-
+//ESTA FUNCION SE ENCARGA DE AGREGAR LA PLANTA A LA BASE DE DATOS
 class AgregarPlantaFrag : Fragment(), OnFragmentActionsListener {
     private val viewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""

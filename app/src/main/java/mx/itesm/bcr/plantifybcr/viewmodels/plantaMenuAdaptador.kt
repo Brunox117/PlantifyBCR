@@ -38,7 +38,7 @@ class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         viewHolder.itemTitle.text = titles2[i]
         viewHolder.itemPercentage.text = iluminacion[i]
-        //IMAGEN
+        //IMAGEN del viewholdes
         val imgPlanta = viewHolder.itemView.findViewById<ImageView>(R.id.ivPlanta)
         var url = urls[i]
         if(url != ""){

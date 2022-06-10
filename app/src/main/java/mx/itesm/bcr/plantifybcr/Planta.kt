@@ -2,7 +2,7 @@ package mx.itesm.bcr.plantifybcr
 
 import java.sql.Time
 import java.time.LocalTime
-
+//DATA CLASS DE LA PLANTA DEL USUARIO
 data class Planta(
     var nombre: String="",
     var hora: String="",
