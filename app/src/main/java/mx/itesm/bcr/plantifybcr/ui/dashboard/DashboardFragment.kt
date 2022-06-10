@@ -147,7 +147,7 @@ class DashboardFragment : Fragment(),ListenerRecycler {
     }
 
     override fun itemClickedPlanta(position: Int) {
-        val plantaWiki = adaptador.titles[position]
+        val plantaWiki = adaptador.titles2[position]
         println("click en $plantaWiki")
         val accion = DashboardFragmentDirections.actionWikiFragToInfoWikiPlantaFrag(plantaWiki)
         findNavController().navigate(accion)

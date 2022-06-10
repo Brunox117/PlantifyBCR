@@ -34,7 +34,6 @@ class InfoWikiPlantaFrag : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         descargarDatos()
     }
 
@@ -44,10 +43,15 @@ class InfoWikiPlantaFrag : Fragment() {
         referenciaPlanta.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 println("Buscando datos ${args.plantaWiki}")
-                var nombre = snapshot.child("/Nombre").value
-                var Info = snapshot.child("/Info").value
-                binding.tvNombrePlantaWInfo.text = nombre.toString()
-                binding.tvInfoWikiPlanta.text = Info.toString()
+                var nombres = snapshot.child("/nombre").value
+                var nombreC = snapshot.child("/nombreC").value
+                var clima = snapshot.child("/clima").value
+                var usos = snapshot.child("/usos").value
+                binding.tvNombresWikiEsp.text = nombres.toString()
+                binding.tvNombreCWikiEsp.text = nombreC.toString()
+                binding.tvClimaWikiEsp.text = clima.toString()
+                binding.tvUsosWikiEsp.text = usos.toString()
+
             }
 
             override fun onCancelled(error: DatabaseError) {
