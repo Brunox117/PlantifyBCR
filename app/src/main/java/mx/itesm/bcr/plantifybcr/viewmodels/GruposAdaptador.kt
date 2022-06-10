@@ -23,9 +23,9 @@ class GruposAdaptador(): RecyclerView.Adapter<GruposAdaptador.ViewHolder>()
         }
     }
 
-    fun setData(arrPlantas: Array<Grupo>){
-        for(planta in arrPlantas){
-            titles.add(planta.nombre)
+    fun setData(arrGrupo: Array<Grupo>){
+        for(grupo in arrGrupo){
+            titles.add(grupo.nombre)
         }
     }
 

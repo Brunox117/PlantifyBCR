@@ -154,8 +154,8 @@ class HomeFragment : Fragment(), ListenerRecycler {
                             arrGrupos.add(grupoArr)
                         }
                     }
-                    //adaptadorGrupos.setData(arrGrupos.toTypedArray())
-                    //adaptadorGrupos.notifyDataSetChanged()
+                    adapterGH.setData(arrGrupos.toTypedArray())
+                    adapterGH.notifyDataSetChanged()
                 }
             }
 
