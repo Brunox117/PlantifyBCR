@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
@@ -23,7 +24,7 @@ import mx.itesm.bcr.plantifybcr.viewmodels.GrupoEspPlantasVM
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaGrupoEspAdaptador
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaWikiAdaptador
 
-class GrupoEspPlantasFrag : Fragment() {
+class GrupoEspPlantasFrag : Fragment(), ListenerRecycler, ListenerRE {
 
     private val args: GrupoEspPlantasFragArgs by navArgs()
     private var _binding: GrupoEspPlantasFragmentBinding? = null
@@ -31,6 +32,7 @@ class GrupoEspPlantasFrag : Fragment() {
     private val binding get() = _binding!!
     private val hviewModel: HomeViewModel by activityViewModels()
     private var _tokken = ""
+
 
     private lateinit var viewModel: GrupoEspPlantasVM
 
@@ -46,6 +48,8 @@ class GrupoEspPlantasFrag : Fragment() {
         adapter = plantaGrupoEspAdaptador()
         recyclerView?.layoutManager = LinearLayoutManager(this.requireContext())
         recyclerView?.adapter = adapter
+        adapter.listener = this
+        adapter.listenerRE = this
         return root
 
     }
@@ -103,6 +107,26 @@ class GrupoEspPlantasFrag : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(GrupoEspPlantasVM::class.java)
         // TODO: Use the ViewModel
+    }
+
+    override fun itemClickedPlanta(position: Int) {
+        val planta = adapter.titles[position]
+        println("Click en $planta")
+        val accion = GrupoEspPlantasFragDirections.actionGrupoEspPlantasFragToPlantaEspFrag(planta,_tokken)
+        findNavController().navigate(accion)
+    }
+
+    override fun itemClickedGrupo(position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun itemClickedEditar(position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun itemClickedBorrar(position: Int) {
+        val planta = adapter.titles[position]
+        println("Configurar Borrar en: $planta")
     }
 
 }

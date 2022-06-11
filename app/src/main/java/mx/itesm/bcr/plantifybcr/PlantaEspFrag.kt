@@ -97,12 +97,13 @@ class PlantaEspFrag : Fragment() {
                 var nombreP = snapshot.child("/nombre").value
                 binding.tvNombrePlanta.text = nombreP.toString()
                 var tipoIluminacion = snapshot.child("/iluminacion").value
-                binding.tvIluminacionPlantaEsp.text = "Iluminación: ${tipoIluminacion.toString()}"
+                binding.tvIluminacionPlantaEsp.text = tipoIluminacion.toString()
                 var horaRiego = snapshot.child("/hora").value
-                binding.tvHoraRiego.text = "Hora de riego: ${horaRiego.toString()}"
-                if(snapshot.child("url").value.toString() != ""){
-                    val url = snapshot.child("url").value
-                    Glide.with(requireContext()).load(url).into(binding.imgPlanta)
+                binding.tvHoraRiego.text = horaRiego.toString()
+                val img = snapshot.child("/url").value
+                println("Url: $img")
+                if(img != null){
+                    Glide.with(requireContext()).load(img).into(binding.imgPlanta)
                 }else{
                     val url = "https://firebasestorage.googleapis.com/v0/b/plantifybcr-71577.appspot.com/o/Usuarios%2F33I63MXlbpgM6JWcgcKVkLmnjam2%2FimagenesPlantas%2FDEFAULT%2FimagenDEFAULTmsf%3A66?alt=media&token=c2397cbd-f6eb-492f-bfe5-7369c45057ac"
                     Glide.with(requireContext()).load(url).into(binding.imgPlanta)

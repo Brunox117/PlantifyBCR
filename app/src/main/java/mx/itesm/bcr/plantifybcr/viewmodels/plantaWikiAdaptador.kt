@@ -7,11 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import mx.itesm.bcr.plantifybcr.*
+import com.bumptech.glide.Glide
 
 class plantaWikiAdaptador(): RecyclerView.Adapter<plantaWikiAdaptador.ViewHolder>(){
 
-    val titles= arrayOf("Cactus","Lavanda", "Vainilla")
-    var titles2= mutableListOf<String>()
+    /* val titles= arrayOf("Cactus","Lavanda", "Vainilla")  Arreglo inicial empleado en la creación de rv. */
+    val urls = mutableListOf<String>() // Areglo de Urls para las imgs.
+    var titles2= mutableListOf<String>() //Arreglo donde se guardan los titulos de las plantas.
     val images = intArrayOf(R.drawable.plant1,R.drawable.plant2,R.drawable.plant3)
     var listener: ListenerRecycler? = null
 
@@ -22,7 +24,15 @@ class plantaWikiAdaptador(): RecyclerView.Adapter<plantaWikiAdaptador.ViewHolder
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         viewHolder.itemTitle.text = titles2[i]
-        viewHolder.itemImage.setImageResource(images[1])
+        // Insertamos la imagen con Glide.
+        val imgPlanta = viewHolder.itemView.findViewById<ImageView>(R.id.ivPlantaWiki)
+        var url = urls[i]
+        if(url != ""){
+            Glide.with(viewHolder.itemView.context).load(url).into(imgPlanta)
+        }else{
+            url = "https://firebasestorage.googleapis.com/v0/b/plantifybcr-71577.appspot.com/o/Usuarios%2F33I63MXlbpgM6JWcgcKVkLmnjam2%2FimagenesPlantas%2FDEFAULT%2FimagenDEFAULTmsf%3A66?alt=media&token=c2397cbd-f6eb-492f-bfe5-7369c45057ac"
+            Glide.with(viewHolder.itemView.context).load(url).into(imgPlanta)
+        }
         viewHolder.itemView.setOnClickListener {
             listener?.itemClickedPlanta(i)
         }
@@ -33,6 +43,7 @@ class plantaWikiAdaptador(): RecyclerView.Adapter<plantaWikiAdaptador.ViewHolder
             if(planta.nombreC != null || planta.nombreC != ""){
                 titles2.add(planta.nombreC)
             }
+            urls.add(planta.url)
         }
     }
 

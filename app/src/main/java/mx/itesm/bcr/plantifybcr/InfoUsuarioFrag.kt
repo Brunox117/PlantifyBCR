@@ -16,6 +16,7 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -25,6 +26,8 @@ import mx.itesm.bcr.plantifybcr.databinding.FragmentHomeBinding
 import mx.itesm.bcr.plantifybcr.databinding.InfoUsuarioFragmentBinding
 import mx.itesm.bcr.plantifybcr.ui.home.HomeViewModel
 import mx.itesm.bcr.plantifybcr.viewmodels.InfoUsuarioVM
+import com.bumptech.glide.Glide
+
 
 class InfoUsuarioFrag : Fragment() {
 
@@ -38,7 +41,7 @@ class InfoUsuarioFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = InfoUsuarioFragmentBinding.inflate(inflater)
-        //CODIGO CALIDAD ===============================================================================
+        //CODIGO Planes de usuario ===============================================================================
         binding.btnHazteProIU.setOnClickListener {
             cambiarPlanUsuario()
         }
@@ -48,7 +51,7 @@ class InfoUsuarioFrag : Fragment() {
         binding.btnCancelarSUB.setOnClickListener {
             cancelarSuscripcion()
         }
-        //CODIGO CALIDAD ===============================================================================
+        //CODIGO listeners para planes ===============================================================================
         binding.btnLogOutIU.setOnClickListener {
             AuthUI.getInstance().signOut(requireContext()).addOnCompleteListener {
                 activity?.finish()
@@ -107,6 +110,9 @@ class InfoUsuarioFrag : Fragment() {
 
     private fun descargarDatosNube() {
         val baseDatos = Firebase.database
+        val userPic = Firebase.auth.currentUser
+        //Recuperamos la url de la foto del usuario
+        val photo = userPic?.photoUrl
         val referenciaUsuario = baseDatos.getReference("/Usuarios/$_tokken/infoUsuario")
         referenciaUsuario.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -114,6 +120,10 @@ class InfoUsuarioFrag : Fragment() {
                 var correo = snapshot.child("/correo").value
                 binding.adUsuario.text = nombre.toString()
                 binding.adEmail.text = correo.toString()
+                //Colocamos la foto del usuario
+                if (userPic != null){
+                    Glide.with(requireContext()).load(photo).into(binding.ivUsuarioInfo)
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

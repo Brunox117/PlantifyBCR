@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -24,6 +25,8 @@ import mx.itesm.bcr.plantifybcr.ui.dashboard.DashboardFragmentDirections
 import mx.itesm.bcr.plantifybcr.viewmodels.Grupo
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaGrupoEspAdaptador
 import mx.itesm.bcr.plantifybcr.viewmodels.plantaMenuAdaptador
+import com.bumptech.glide.Glide
+
 
 
 
@@ -101,11 +104,18 @@ class HomeFragment : Fragment(), ListenerRecycler {
         val baseDatos = Firebase.database
         //Obtenemos la informacion del usuario
         val referenciaUsuario = baseDatos.getReference("/Usuarios/$_tokken")
+        val userPic = Firebase.auth.currentUser
+        //Recuperamos la url de la foto del usuario
+        val photo = userPic?.photoUrl
         referenciaUsuario.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 //Recuperamos el nombre
                 var nombre = snapshot.child("/infoUsuario/nombre").value
                 binding.tvUsuario.text = nombre.toString()
+                //Colocamos la foto del usuario
+                if (userPic != null){
+                    Glide.with(requireContext()).load(photo).into(binding.btnUserImage)
+                }
                 //bindUsuario = InfoUsuarioFrag()
                 //bindUsuario.setInfo(nombre.toString())
             }
@@ -163,7 +173,6 @@ class HomeFragment : Fragment(), ListenerRecycler {
         })
     }
 
-
     override fun itemClickedPlanta(position: Int){
         val planta = adapterPH.titles2[position]
         println("Click en $planta")
@@ -173,16 +182,6 @@ class HomeFragment : Fragment(), ListenerRecycler {
 
     override fun itemClickedGrupo(position: Int) {
         val grupo = adapterGH.titles[position]
-        /*var arrPlant = mutableListOf<Planta>()
-        for (planta in arrPlantas){
-            if (grupo == planta.grupo){
-                arrPlant.add(planta)
-            }
-        }
-        adapterGEH.setData(arrPlant.toTypedArray())
-        adapterGEH.notifyDataSetChanged()
-        println("titulos: [${adapterGEH.titles}]")
-        println("Click en $grupo")*/
         val accion = HomeFragmentDirections.actionHomeFragToGrupoEspPlantasFrag(grupo)
         findNavController().navigate(accion)
     }

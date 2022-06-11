@@ -88,6 +88,9 @@
         <argument
             android:name="NombreGrupo"
             app:argType="string" />
+        <action
+            android:id="@+id/action_grupoEspPlantasFrag_to_plantaEspFrag"
+            app:destination="@id/plantaEspFrag" />
     </fragment>
     <fragment
         android:id="@+id/gruposPlantasFrag"

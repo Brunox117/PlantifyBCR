@@ -35,6 +35,7 @@ class plantaMenuAdaptador(): RecyclerView.Adapter<plantaMenuAdaptador.ViewHolder
             iluminacion.add("Hora de riego: ${planta.hora}")
         }
     }
+
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         viewHolder.itemTitle.text = titles2[i]
         viewHolder.itemPercentage.text = iluminacion[i]
