@@ -76,50 +76,27 @@
         app:layout_constraintTop_toBottomOf="@+id/adUsuario" />
 
     <Button
-        android:id="@+id/btnHazteProIU"
+        android:id="@+id/btnEditorIU"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="143dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="144dp"
-        android:text="Hazte PRO!"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="124dp"
+        android:text="Aplica a editor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adEmail" />
 
     <Button
-        android:id="@+id/btnEditorIU"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="124dp"
-        android:text="Aplica a editor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnHazteProIU" />
-
-    <Button
-        android:id="@+id/btnCancelarSUB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Cancelar suscripcion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEditorIU" />
-
-    <Button
         android:id="@+id/btnLogOutIU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="64dp"
         android:text="Salir"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCancelarSUB" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEditorIU" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

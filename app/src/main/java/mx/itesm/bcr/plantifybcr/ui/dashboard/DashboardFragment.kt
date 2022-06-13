@@ -55,9 +55,6 @@ class DashboardFragment : Fragment(),ListenerRecycler {
         binding.rvPlantaWiki.visibility = View.GONE
         binding.tvHaztePro.visibility = View.GONE
         binding.btnHaztePro.visibility = View.GONE
-        binding.btnHaztePro.setOnClickListener {
-            cambiarPlanUsuario()
-        }
         binding.btnAgregarWiki.setOnClickListener{
             cambiarConfiguracion()
         }
@@ -73,17 +70,7 @@ class DashboardFragment : Fragment(),ListenerRecycler {
         findNavController().navigate(accion)
     }
 
-    //CODIGO CALIDAD
-    private fun cambiarPlanUsuario() {
-        val tipoPlan = "pro"
-        val baseDatos = Firebase.database
-        val referencia = baseDatos.getReference("/Usuarios/$_tokken/infoUsuario/tipoUsuario")
-        referencia.setValue(tipoPlan)
-        AlertDialog.Builder(requireContext()).apply {
-            setTitle("Te has sucrito correctamente al plan PRO!")
-            setPositiveButton("Ok",null)
-        }.show()
-    }
+
     //CODIGO CALIDAD
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -129,13 +116,8 @@ class DashboardFragment : Fragment(),ListenerRecycler {
                 if(tipoUsuario.value == "editorWiki"){
                     binding.btnAgregarWiki.visibility = View.VISIBLE
                     binding.rvPlantaWiki.visibility = View.VISIBLE
-                }
-                if(tipoUsuario.value == "pro"){
-                    binding.rvPlantaWiki.visibility= View.VISIBLE
-                }
-                if(tipoUsuario.value == "sinplan"){
-                    binding.tvHaztePro.visibility = View.VISIBLE
-                    binding.btnHaztePro.visibility = View.VISIBLE
+                }else {
+                    binding.rvPlantaWiki.visibility = View.VISIBLE
                 }
             }
 

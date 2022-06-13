@@ -35,6 +35,7 @@ class InfoUsuarioFrag : Fragment() {
     private var _binding: InfoUsuarioFragmentBinding? = null
     private val binding get() = _binding!!
     private var _tokken = ""
+    private var tipoUsuarioC = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,15 +43,18 @@ class InfoUsuarioFrag : Fragment() {
     ): View? {
         _binding = InfoUsuarioFragmentBinding.inflate(inflater)
         //CODIGO Planes de usuario ===============================================================================
-        binding.btnHazteProIU.setOnClickListener {
-            cambiarPlanUsuario()
-        }
+
         binding.btnEditorIU.setOnClickListener {
-            volverEditor()
+            if(tipoUsuarioC != "editorWiki"){
+                volverEditor()
+            }else{
+                AlertDialog.Builder(requireContext()).apply {
+                    setTitle("Ya eres editor de la wiki!")
+                    setPositiveButton("Ok",null)
+                }.show()
+            }
         }
-        binding.btnCancelarSUB.setOnClickListener {
-            cancelarSuscripcion()
-        }
+
         //CODIGO listeners para planes ===============================================================================
         binding.btnLogOutIU.setOnClickListener {
             AuthUI.getInstance().signOut(requireContext()).addOnCompleteListener {
@@ -66,16 +70,7 @@ class InfoUsuarioFrag : Fragment() {
 
 
     //CODIGO CALIDAD ===================================================================================
-    private fun cambiarPlanUsuario() {
-        val tipoPlan = "pro"
-        val baseDatos = Firebase.database
-        val referencia = baseDatos.getReference("/Usuarios/$_tokken/infoUsuario/tipoUsuario")
-        referencia.setValue(tipoPlan)
-        AlertDialog.Builder(requireContext()).apply {
-            setTitle("Te has suscrito correctamente al plan PRO!")
-            setPositiveButton("Ok",null)
-        }.show()
-    }
+
     private fun volverEditor() {
         val tipoPlan = "editorWiki"
         val baseDatos = Firebase.database
@@ -86,16 +81,7 @@ class InfoUsuarioFrag : Fragment() {
             setPositiveButton("Ok",null)
         }.show()
     }
-    private fun cancelarSuscripcion() {
-        val tipoPlan = "sinplan"
-        val baseDatos = Firebase.database
-        val referencia = baseDatos.getReference("/Usuarios/$_tokken/infoUsuario/tipoUsuario")
-        referencia.setValue(tipoPlan)
-        AlertDialog.Builder(requireContext()).apply {
-            setTitle("Esperamos vuelvas pronto!")
-            setPositiveButton("Ok",null)
-        }.show()
-    }
+
     //CODIGO CALIDAD ===================================================================================
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -118,6 +104,7 @@ class InfoUsuarioFrag : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var nombre = snapshot.child("/nombre").value
                 var correo = snapshot.child("/correo").value
+                tipoUsuarioC = snapshot.child("/tipoUsuario").value.toString()
                 binding.adUsuario.text = nombre.toString()
                 binding.adEmail.text = correo.toString()
                 //Colocamos la foto del usuario
