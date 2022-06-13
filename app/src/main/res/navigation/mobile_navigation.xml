@@ -91,6 +91,9 @@
         <action
             android:id="@+id/action_grupoEspPlantasFrag_to_plantaEspFrag"
             app:destination="@id/plantaEspFrag" />
+        <action
+            android:id="@+id/action_grupoEspPlantasFrag_self"
+            app:destination="@id/grupoEspPlantasFrag" />
     </fragment>
     <fragment
         android:id="@+id/gruposPlantasFrag"

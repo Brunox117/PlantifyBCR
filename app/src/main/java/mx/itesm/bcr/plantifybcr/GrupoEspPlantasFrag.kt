@@ -126,7 +126,16 @@ class GrupoEspPlantasFrag : Fragment(), ListenerRecycler, ListenerRE {
 
     override fun itemClickedBorrar(position: Int) {
         val planta = adapter.titles[position]
-        println("Configurar Borrar en: $planta")
+        eliminarPlantadeGrupo(planta)
+
+    }
+
+    private fun eliminarPlantadeGrupo(nombrePlanta: String) {
+        val baseDatos = Firebase.database
+        val referenciaElimar = baseDatos.getReference("/Usuarios/$_tokken/Plantas/$nombrePlanta/grupo")
+        referenciaElimar.setValue("ninguno")
+        val accion = GrupoEspPlantasFragDirections.actionGrupoEspPlantasFragSelf(args.nombreGrupo)
+        findNavController().navigate(accion)
     }
 
 }
